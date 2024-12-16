@@ -9,12 +9,18 @@ return new class extends Migration
 
     public function up(): void
     {
-
+        Schema::create('options',function(Blueprint $table){
+            $table->id();
+            $table->integer('question_id');
+            $table->string('title');
+            $table->timestamp('created_at')->nullable();
+            $table->softDeletes();
+        });
     }
 
 
     public function down(): void
     {
-
+        Schema::dropIfExists('options');
     }
 };
