@@ -13,7 +13,13 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('expert_id')->default(0);
-            $table->string('state_id')->default(1);
+            $table->integer('state_id')->default(1);
+            $table->string('title');
+            $table->timestamp('created_at')->nullable();
+            $table->softDeletes();
+        });
+        Schema::create('test_states', function (Blueprint $table) {
+            $table->id();
             $table->string('title');
             $table->timestamp('created_at')->nullable();
             $table->softDeletes();
@@ -24,6 +30,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('tests');
+        Schema::dropIfExists('test_states');
 
     }
 };
