@@ -18,6 +18,12 @@ return new class extends Migration
             $table->timestamp('created_at')->nullable();
             $table->softDeletes();
         });
+        Schema::create('question_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->timestamp('created_at')->nullable();
+            $table->softDeletes();
+        });
 
     }
 
@@ -25,5 +31,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('questions');
+        Schema::dropIfExists('question_types');
     }
 };
