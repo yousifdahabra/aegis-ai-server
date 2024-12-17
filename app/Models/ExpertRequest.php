@@ -16,5 +16,9 @@ class ExpertRequest extends Model
     public function user(): BelongsTo{
         return $this->belongsTo(User::class);
     }
+    
+    public function expert_request_documents(){
+        return $this->hasMany(ExpertRequestDocument::class);
+    }
 
 }
