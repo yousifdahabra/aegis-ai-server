@@ -16,12 +16,14 @@ return new class extends Migration
             $table->string('about_user');
             $table->string('user_note');
             $table->string('links');
-
+            $table->timestamp('created_at')->nullable();
+            $table->softDeletes();
         });
     }
 
 
     public function down(): void{
+        Schema::dropIfExists('user_expert_requests');
 
     }
 };
