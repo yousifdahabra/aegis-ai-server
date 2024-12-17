@@ -6,19 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        //
+
+
+    public function up(): void{
+        Schema::create('user_expert_requests', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id');
+            $table->integer('expert_id');
+            $table->string('about_user');
+            $table->string('user_note');
+            $table->string('links');
+
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        //
+
+    public function down(): void{
+
     }
 };
