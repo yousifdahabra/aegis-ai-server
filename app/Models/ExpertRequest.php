@@ -12,7 +12,8 @@ class ExpertRequest extends Model
         'extra_informations',
         'links',
     ];
-    public function users(): BelongsTo
+    
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
