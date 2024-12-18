@@ -12,7 +12,8 @@ class ExpertRequestDocument extends Model
         'file_path',
     ];
 
-    public function expert_request(): BelongsTo{
+    public function expert_request(): BelongsTo
+    {
         return $this->belongsTo(ExpertRequest::class);
     }
 
