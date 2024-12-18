@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Expert;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class RegisterExpertRequest extends FormRequest
+class RegisterExpertRequest extends BaseRequest
 {
     public function authorize(): bool
     {

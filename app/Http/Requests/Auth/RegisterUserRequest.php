@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests\Auth;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Http\Requests\BaseRequest;
 
-class RegisterUserRequest extends FormRequest
+class RegisterUserRequest extends BaseRequest
 {
     public function authorize(): bool
     {
@@ -22,6 +20,7 @@ class RegisterUserRequest extends FormRequest
             'password' => 'required|string|min:6',
         ];
     }
+
     public function messages(){
         return [
             'name.required' => 'The name field is required.',
@@ -36,16 +35,6 @@ class RegisterUserRequest extends FormRequest
             'password.confirmed' => 'Password confirmation does not match.',
         ];
     }
-    
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(
-            response()->json([
-                'success' => false,
-                'message' => 'Validation errors occurred.',
-                'errors' => $validator->errors(),
-            ], 422)
-        );
-    }
+
 
 }
