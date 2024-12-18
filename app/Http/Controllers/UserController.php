@@ -8,20 +8,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
+
+    protected $userService;
+    
+    function __construct(UserService $userService){
+        $this->userService = $userService;
+    }
+
     function register(RegisterUserRequest $request){
         $data =  $request->validated();
 
-        $user = new User;
-        $user->user_role_id = 1; 
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->phone_number = $data['phone_number'];
-        $user->password = Hash::make($data['password']);
-        $user->save();
-        
+        $user = $this->userService->register($data);
+
         $token = JWTAuth::fromUser($user);
 
         return response()->json([
