@@ -23,7 +23,18 @@ class ExpertController extends Controller
     function register(RegisterExpertRequest $request){
         $data =  $request->validated();
 
-        
+        $user = $this->userService->register($data);
+        $data['user_id'] = $user->id;
+        $expert = $this->expertService->store($data);
+        $token = JWTAuth::fromUser($user);
+
+        return response()->json([
+            'success' => true,
+            "data" => $user, 
+            "token" => $token, 
+            "message" => 'insert expert', 
+        ], 201);
+
     
     }
 
