@@ -21,6 +21,7 @@ class UserController extends Controller
         $user->phone_number = $data['phone_number'];
         $user->password = Hash::make($data['password']);
         $user->save();
+        
         $token = JWTAuth::fromUser($user);
 
         return response()->json([
