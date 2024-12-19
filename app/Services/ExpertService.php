@@ -1,8 +1,9 @@
 <?php 
 namespace App\Services;
 
+use App\Models\ExpertRequestDocument;
 use App\Models\ExpertRequest;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class ExpertService{
     public function store(array $data): ExpertRequest
@@ -15,4 +16,13 @@ class ExpertService{
 
         return $expert;
     }
+    public function store_files(array $data): array
+    {
+        $documents = $data['documents'];
+        $folder_path = 'expert_certificates/' . $data['user_id'];
+        $experts = array();
+         
+        return $experts;
+    }
+
 }
