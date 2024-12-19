@@ -9,7 +9,7 @@ class UserService{
     public function register(array $data): User
     {
         $user = new User;
-        $user->user_role_id = 1; 
+        $user->user_role_id = 3; 
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->phone_number = $data['phone_number'];
