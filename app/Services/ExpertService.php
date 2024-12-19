@@ -21,7 +21,15 @@ class ExpertService{
         $documents = $data['documents'];
         $folder_path = 'expert_certificates/' . $data['user_id'];
         $experts = array();
-         
+        foreach ($documents as $file) {
+            $new_name = Str::uuid()->toString() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs($folder_path, $new_name, 'private');
+            $expert_file = new ExpertRequestDocument;
+            $expert_file->file_path = $path;
+            $experts[] = $expert_file->save();
+    
+        }
+        
         return $experts;
     }
 
