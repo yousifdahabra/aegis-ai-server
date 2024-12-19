@@ -25,6 +25,7 @@ class ExpertService{
             $new_name = Str::uuid()->toString() . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs($folder_path, $new_name, 'private');
             $expert_file = new ExpertRequestDocument;
+            $expert_file->expert_request_id = $data['expert_request_id'];
             $expert_file->file_path = $path;
             $experts[] = $expert_file->save();
     

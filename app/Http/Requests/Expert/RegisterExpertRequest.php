@@ -20,8 +20,8 @@ class RegisterExpertRequest extends BaseRequest
             'password' => 'required|string|min:6',
             'extra_informations' => 'required|string|max:255',
             'links' => 'required|string',
-            'documents' => 'required|array|min:1',
-            'documents.*' => 'file|max:2048|mimes:pdf,PDF',
+            'documents' => 'required|array',
+            'documents.*' => 'file|mimes:pdf|max:2048',
         ];
     }
     
