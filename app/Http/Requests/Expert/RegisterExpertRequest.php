@@ -20,7 +20,8 @@ class RegisterExpertRequest extends BaseRequest
             'password' => 'required|string|min:6',
             'extra_informations' => 'required|string|max:255',
             'links' => 'required|string',
-            'documents' => 'required|file|max:2048|mimes:pdf,PDF',
+            'documents' => 'required|array|min:1',
+            'documents.*' => 'file|max:2048|mimes:pdf,PDF',
         ];
     }
     
@@ -40,7 +41,8 @@ class RegisterExpertRequest extends BaseRequest
             'extra_informations.max' => 'The extra informations field has a maximum 255 character limit.',
             'links.required' => 'The links field is required.',
             'documents.required' => 'The documents field is required.',
-            'documents.max' => 'The documents field has a maximum 2048 bytes limit.',
+            'documents.min' => 'The documents must be at least 1 file.',
+            'documents.*.max' => 'The documents field has a maximum 2048 bytes limit.',
         ];
     }
 
