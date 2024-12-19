@@ -7,11 +7,20 @@ use Illuminate\Database\Seeder;
 
 class UserRoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+
     public function run(): void
     {
-        //
+        DB::table('user_roles')->insert(
+        [
+            'name' => 'admin',
+        ],
+        [
+            'name' => 'expert',
+        ],
+        [
+            'name' => 'user',
+        ],
+    );
+
     }
 }
