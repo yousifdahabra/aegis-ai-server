@@ -26,9 +26,9 @@ class UserController extends Controller
 
         return response()->json([
             'success' => true,
-            "data" => $user, 
-            "token" => $token, 
-            "message" => 'insert user', 
+            "data" => $user,
+            "token" => $token,
+            "message" => 'insert user',
         ], 201);
 
     }
@@ -43,9 +43,9 @@ class UserController extends Controller
 
             return response()->json([
                 'success' => true,
-                "user" => $user, 
+                "user" => $user,
                 "token" => $token,
-                "message" => 'login succ', 
+                "message" => 'login succ',
             ], 201);
 
         } catch (JWTException $e) {
