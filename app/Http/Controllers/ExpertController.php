@@ -22,7 +22,7 @@ class ExpertController extends Controller
 
     function register(RegisterExpertRequest $request){
         $data =  $request->validated();
-        
+
         $user = $this->userService->register($data);
         $data['user_id'] = $user->id;
         $expert = $this->expertService->store($data);
@@ -34,9 +34,9 @@ class ExpertController extends Controller
 
         return response()->json([
             'success' => true,
-            "data" => $user, 
-            "token" => $token, 
-            "message" => 'insert expert', 
+            "data" => $user,
+            "token" => $token,
+            "message" => 'insert expert',
         ], 201);
     }
 
