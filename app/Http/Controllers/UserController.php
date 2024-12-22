@@ -33,6 +33,12 @@ class UserController extends Controller
 
     }
     public function login(Request $request){
+        return response()->json([
+            'success' => true,
+            "message" => 'login succ',
+        ], 201);
+
+
         $credentials = $request->only('email', 'password');
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
@@ -52,5 +58,11 @@ class UserController extends Controller
             return response()->json(['error' => 'Could not create token'], 500);
         }
     }
+    public function get_users(Request $request){
+        return response()->json([
+            'success' => true,
+            "message" => 'hello get_users',
+        ], 201);
 
+    }
 }
