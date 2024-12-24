@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\auth\RegisterUserRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -25,10 +26,10 @@ class UserController extends Controller
         $token = JWTAuth::fromUser($user);
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             "data" => $user,
             "token" => $token,
-            "message" => 'insert user',
+            "message" => 'User created successfully',
         ], 201);
 
     }
@@ -42,7 +43,7 @@ class UserController extends Controller
             $user = auth()->user();
 
             return response()->json([
-                'success' => true,
+                'status' => true,
                 "user" => $user,
                 "token" => $token,
                 "message" => 'login succ',
@@ -53,11 +54,32 @@ class UserController extends Controller
         }
     }
 
-    public function get_users(Request $request){
-        return response()->json([
-            'success' => true,
-            "message" => 'login succ',
-        ], 201);
+    public function show($id = ''){
 
     }
+
+    public function update(RegisterUserRequest $request, $id){
+        if(empty($id) || !is_numeric($id)){
+            return response()->json([
+                'status' => false,
+                "message" => 'Customer Error',
+            ], 422);
+        }
+        $data =  $request->validated();
+        $user = $this->userService->update($data,$id);
+        if($user){
+            return response()->json([
+                'status' => true,
+                'message' => 'Customer updated successfully',
+                'data' => $user
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Customer not found',
+        ], 200);
+
+    }
+
 }
