@@ -23,7 +23,7 @@ class ExpertController extends Controller
     function register(RegisterExpertRequest $request){
         $data =  $request->validated();
 
-        $user = $this->userService->register($data);
+        $user = $this->userService->register($data,2);
         $data['user_id'] = $user->id;
         $expert = $this->expertService->store($data);
         $expert_request_id = $expert->id;
