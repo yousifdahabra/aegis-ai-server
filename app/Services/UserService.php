@@ -43,6 +43,13 @@ class UserService{
         return true;
     }
 
+    public function get_users($id = 0){
+        if($id > 0){
+            return User::findOrFail($id);
+        }
+        return User::all();
+    }
+
 
 
 }
