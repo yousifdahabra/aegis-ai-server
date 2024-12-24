@@ -33,5 +33,15 @@ class ExpertService{
 
         return $experts;
     }
+    public function delete($id): bool
+    {
+        $expert = ExpertRequest::where('user_id',$id);
+        if(!$expert){
+            return false;
+        }
+        $expert->delete();
+
+        return true;
+    }
 
 }
