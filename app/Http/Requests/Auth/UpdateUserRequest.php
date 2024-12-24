@@ -22,8 +22,17 @@ class UpdateUserRequest extends BaseRequest
     }
 
     public function messages(){
-
-
+        return [
+            'name.required' => 'The name field is required.',
+            'name.max' => 'The name field has a maximum 255 character limit.',
+            'phone_number.required' => 'The phone number field is required.',
+            'phone_number.max' => 'The phone_number field has a maximum 255 character limit.',
+            'email.required' => 'The email field is required.',
+            'email.email' => 'Please provide a valid email address.',
+            'password.required' => 'The password field is required.',
+            'password.min' => 'Password must be at least 8 characters long.',
+            'password.confirmed' => 'Password confirmation does not match.',
+        ];
     }
 
 }
