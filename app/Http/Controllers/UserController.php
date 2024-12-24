@@ -55,8 +55,20 @@ class UserController extends Controller
         }
     }
 
-    public function show($id = ''){
+    public function show($id = 0){
+        $user = $this->userService->get_users($id);
+        if($user){
+            return response()->json([
+                'status' => true,
+                'message' => 'Get User successfully',
+                'data' => $user
+            ], 200);
+        }
 
+        return response()->json([
+            'status' => false,
+            'message' => 'User error',
+        ], 422);
     }
 
     public function update(UpdateUserRequest $request, $id){
