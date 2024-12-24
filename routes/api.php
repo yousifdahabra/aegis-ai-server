@@ -13,6 +13,7 @@ Route::post("/login", [UserController::class, "login"]);
 
 Route::middleware([JwtMiddleware::class])->group(function () {
     Route::prefix('users')->group(function () {
+        Route::get('/{user_id?}', [UserController::class, 'show']);
         Route::put('/{user_id}', [UserController::class, 'update']);
         Route::delete('/{user_id}', [UserController::class, 'destroy']);
     });
