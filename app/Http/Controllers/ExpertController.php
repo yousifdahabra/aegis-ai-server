@@ -39,5 +39,19 @@ class ExpertController extends Controller
             "message" => 'insert expert',
         ], 201);
     }
+    public function show($id = 0){
+        $user = $this->userService->get_users($id,2);
+        if($user){
+            return response()->json([
+                'status' => true,
+                'message' => 'Get Expert successfully',
+                'data' => $user
+            ], 200);
+        }
 
+        return response()->json([
+            'status' => false,
+            'message' => 'Expert error',
+        ], 422);
+    }
 }
