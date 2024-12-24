@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\auth\RegisterUserRequest;
+use App\Http\Requests\Auth\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -58,7 +59,7 @@ class UserController extends Controller
 
     }
 
-    public function update(RegisterUserRequest $request, $id){
+    public function update(UpdateUserRequest $request, $id){
         if(empty($id) || !is_numeric($id)){
             return response()->json([
                 'status' => false,
