@@ -12,5 +12,7 @@ Route::post("/register", [UserController::class, "register"]);
 Route::post("/login", [UserController::class, "login"]);
 
 Route::middleware([JwtMiddleware::class])->group(function () {
-    Route::post('/get_users', [UserController::class, 'get_users']);
+    Route::prefix('users')->group(function () {
+        Route::put('/{user_id}', [UserController::class, 'update']);
+    });
 });
