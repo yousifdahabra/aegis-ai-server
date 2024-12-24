@@ -54,4 +54,29 @@ class ExpertController extends Controller
             'message' => 'Expert error',
         ], 422);
     }
+    public function destroy($id){
+        if(empty($id) || !is_numeric($id)){
+            return response()->json([
+                'status' => false,
+                "message" => 'Expert Error',
+            ], 422);
+        }
+        $user = $this->userService->delete($id);
+        $expert = $this->expertService->delete($id);
+
+        if($user){
+            return response()->json([
+                'status' => true,
+                'message' => 'Expert deleted successfully',
+                'data' => [$user,$expert]
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Expert not found',
+        ], 422);
+
+    }
+
 }
