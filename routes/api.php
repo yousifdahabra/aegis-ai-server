@@ -17,4 +17,7 @@ Route::middleware([JwtMiddleware::class])->group(function () {
         Route::put('/{user_id}', [UserController::class, 'update']);
         Route::delete('/{user_id}', [UserController::class, 'destroy']);
     });
+    Route::prefix('experts')->group(function () {
+        Route::get('/{expert_id?}', [ExpertController::class, 'show']);
+    });
 });
