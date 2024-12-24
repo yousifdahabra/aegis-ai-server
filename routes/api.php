@@ -19,5 +19,6 @@ Route::middleware([JwtMiddleware::class])->group(function () {
     });
     Route::prefix('experts')->group(function () {
         Route::get('/{expert_id?}', [ExpertController::class, 'show']);
+        Route::delete('/{expert_id}', [ExpertController::class, 'destroy']);
     });
 });
