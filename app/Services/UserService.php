@@ -6,10 +6,10 @@ use Illuminate\Support\Facades\Hash;
 
 
 class UserService{
-    public function register(array $data): User
+    public function register(array $data,$role = 3): User
     {
         $user = new User;
-        $user->user_role_id = 3;
+        $user->user_role_id = $role;
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->phone_number = $data['phone_number'];
