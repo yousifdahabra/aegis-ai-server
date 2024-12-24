@@ -32,6 +32,17 @@ class UserService{
         return $user;
     }
 
+    public function delete($id): bool
+    {
+        $user = User::findOrFail($id);
+        if(!$user){
+            return false;
+        }
+        $user->delete();
+
+        return true;
+    }
+
 
 
 }
