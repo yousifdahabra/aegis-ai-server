@@ -62,7 +62,7 @@ class UserController extends Controller
         if(empty($id) || !is_numeric($id)){
             return response()->json([
                 'status' => false,
-                "message" => 'Customer Error',
+                "message" => 'User Error',
             ], 422);
         }
         $data =  $request->validated();
@@ -70,16 +70,36 @@ class UserController extends Controller
         if($user){
             return response()->json([
                 'status' => true,
-                'message' => 'Customer updated successfully',
+                'message' => 'User updated successfully',
                 'data' => $user
             ], 200);
         }
 
         return response()->json([
             'status' => false,
-            'message' => 'Customer not found',
+            'message' => 'User not found',
         ], 200);
+    }
+    public function destroy($id){
+        if(empty($id) || !is_numeric($id)){
+            return response()->json([
+                'status' => false,
+                "message" => 'User Error',
+            ], 422);
+        }
+        $user = $this->userService->delete($id);
+        if($user){
+            return response()->json([
+                'status' => true,
+                'message' => 'User deleted successfully',
+                'data' => $user
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'User not found',
+        ], 422);
 
     }
-
 }
