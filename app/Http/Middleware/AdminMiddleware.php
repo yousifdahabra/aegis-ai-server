@@ -16,6 +16,9 @@ class AdminMiddleware
             if (!$user) {
                 return response()->json(['error' => 'User not found'], 401);
             }
+            if($user['user_role_id'] != 1){
+                return response()->json(['error' => 'You are not Authorization'], 401);
+            }
         } catch (TokenInvalidException) {
             return response()->json(['error' => 'Token is invalid'], 401);
         } catch (TokenExpiredException) {
