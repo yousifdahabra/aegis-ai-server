@@ -5,6 +5,7 @@ use App\Http\Controllers\ExpertController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\JwtMiddleware;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\ExpertMiddleware;
 
 
 
