@@ -27,4 +27,13 @@ class TestService{
         return $test;
     }
 
+    public function delete($id){
+        $test = Test::findOrFail($id);
+        if(!$test){
+            return false;
+        }
+        $test->delete();
+        return true;
+    }
+
 }
