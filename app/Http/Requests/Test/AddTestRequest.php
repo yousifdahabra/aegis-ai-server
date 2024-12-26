@@ -16,7 +16,10 @@ class AddTestRequest extends BaseRequest
     public function rules(): array
     {
         return [
-
+            'title' => 'required|string|max:255',
+            'user_id' => 'required|numeric|exists:users,id',
+            'expert_id' => 'required|numeric|exists:users,id',
+            'test_state_id' => 'required|numeric|exists:test_states,id',
         ];
     }
 }
