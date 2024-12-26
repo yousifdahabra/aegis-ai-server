@@ -57,4 +57,8 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Test::class);
     }
 
+    public function expert_tests(){
+        return $this->hasMany(Test::class,'expert_id');
+    }
+
 }
