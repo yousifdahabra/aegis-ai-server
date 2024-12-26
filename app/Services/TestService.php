@@ -5,6 +5,18 @@ use App\Models\Test;
 
 class TestService{
 
+    public function get_tests($id = 0){
+        if($id > 0){
+            $test = Test::findOrFail($id);
+            if(!$test){
+                return false;
+            }
+            return $test;
+        }
+        return Test::all();
+    }
+
+
     public function store(array $data): Test
     {
         $test = new Test;
