@@ -18,5 +18,9 @@ class Test extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function expert(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'expert_id');
+    }
 
 }
