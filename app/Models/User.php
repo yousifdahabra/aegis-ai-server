@@ -44,6 +44,21 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function is_admin(): bool
+    {
+        return $this->role_id === UserRole::ADMIN;
+    }
+
+    public function is_expert(): bool
+    {
+        return $this->role_id === UserRole::EXPERT;
+    }
+
+    public function is_normal_user(): bool
+    {
+        return $this->role_id === UserRole::USER;
+    }
+
     public function role(): BelongsTo
     {
         return $this->belongsTo(UserRole::class);
