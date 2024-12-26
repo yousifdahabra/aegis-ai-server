@@ -14,14 +14,17 @@ class Test extends Model
         'test_state_id',
         'title',
     ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
+
     public function expert(): BelongsTo
     {
         return $this->belongsTo(User::class, 'expert_id');
     }
+
     public function test_state(): BelongsTo
     {
         return $this->belongsTo(TestState::class);
