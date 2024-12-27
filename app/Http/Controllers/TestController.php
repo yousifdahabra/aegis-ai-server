@@ -15,6 +15,24 @@ class TestController extends Controller
         $this->testService = $testService;
     }
 
+    public function show($id = 0){
+        $tests = $this->testService->get_tests($id);
+
+        if(!$tests){
+            return response()->json([
+                'status' => false,
+                'message' => 'Expert error',
+            ], 422);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Get Tests successfully',
+            'data' => $tests
+        ], 200);
+    }
+
+
     function store(AddTestRequest $request){
         $data =  $request->validated();
         $test = $this->testService->store($data);

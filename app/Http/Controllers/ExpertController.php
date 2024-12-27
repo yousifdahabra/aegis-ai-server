@@ -41,18 +41,19 @@ class ExpertController extends Controller
     }
     public function show($id = 0){
         $user = $this->userService->get_users($id,2);
-        if($user){
+
+        if(!$user){
             return response()->json([
-                'status' => true,
-                'message' => 'Get Expert successfully',
-                'data' => $user
-            ], 200);
+                'status' => false,
+                'message' => 'Expert error',
+            ], 422);
         }
 
         return response()->json([
-            'status' => false,
-            'message' => 'Expert error',
-        ], 422);
+            'status' => true,
+            'message' => 'Get Expert successfully',
+            'data' => $user
+        ], 200);
     }
     public function destroy($id){
         if(empty($id) || !is_numeric($id)){
