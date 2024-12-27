@@ -57,6 +57,19 @@ class QuestionController extends Controller
                 "message" => 'Question Error',
             ], 422);
         }
+        $question = $this->question_service->delete($id);
+
+        if(!$question){
+            return response()->json([
+                'status' => false,
+                'message' => 'Question not found',
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Question deleted successfully',
+        ], 200);
 
     }
 
