@@ -9,7 +9,7 @@ class Question extends Model{
 
     protected $fillable = [
         'test_id',
-        'question_types_id',
+        'question_type_id',
         'previous_question_id',
         'title',
     ];
