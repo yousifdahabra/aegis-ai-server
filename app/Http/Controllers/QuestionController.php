@@ -29,7 +29,7 @@ class QuestionController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Get Questions successfully',
-            'data' => QuestionResource::collection($question),
+            'data' => $id == 0 ? QuestionResource::collection($question):new QuestionResource($question),
         ], 200);
     }
 

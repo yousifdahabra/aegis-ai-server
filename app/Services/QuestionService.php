@@ -9,13 +9,13 @@ class QuestionService{
 
     public function get_questions($id = 0){
         if($id > 0){
-            $question = Question::find($id);
+            $question = Question::with('options')->find($id);
             if(!$question){
                 return false;
             }
             return $question;
         }
-        return Question::all();
+        return Question::with('options')->get();
     }
 
     public function store(array $data): Question
