@@ -3,7 +3,8 @@
 use App\Models\Question;
 use App\Models\Option;
 
-class QuestionService{
+class QuestionService
+{
 
     public function store(array $data): Question
     {
@@ -24,4 +25,19 @@ class QuestionService{
         return $question;
     }
 
+
+    public function update(array $data, $id){
+        $question = Question::find($id);
+        if (!$question) {
+            return false;
+        }
+
+        $question->test_id = $data['test_id'] ?? $question->test_id;
+        $question->question_types_id = $data['question_types_id'] ?? $question->question_types_id;
+        $question->previous_question_id = $data['previous_question_id'] ?? $question->previous_question_id;
+        $question->title = $data['title'] ?? $question->title;
+        $question->save();
+
+        return $question;
+    }
 }
