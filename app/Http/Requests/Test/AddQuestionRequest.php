@@ -37,6 +37,12 @@ class AddQuestionRequest extends FormRequest
             'question_type_id.exists' => 'The selected question type ID does not exist in the question_types table.',
             'previous_question_id.numeric' => 'The previous question ID must be a number.',
             'previous_question_id.exists' => 'The selected previous question ID does not exist in the questions table.',
+            'options.required' => 'At least two options are required.',
+            'options.array' => 'Options must be an array.',
+            'options.min' => 'At least two options are required.',
+            'options.*.title.required' => 'Each option must have a title.',
+            'options.*.title.string' => 'Each option title must be a string.',
+            'options.*.title.max' => 'Each option title may not be greater than 255 characters.',
         ];
     }
 
