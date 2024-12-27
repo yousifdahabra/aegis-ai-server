@@ -24,8 +24,22 @@ class TestController extends Controller
         ], 201);
     }
     function update(UpdateTestRequest $request,$id){
+        if(empty($id) || !is_numeric($id)){
+            return response()->json([
+                'status' => false,
+                "message" => 'Test Error',
+            ], 422);
+        }
+
         $data =  $request->validated();
         $test = $this->testService->update($data,$id);
+
+        if(!$test){
+            return response()->json([
+                'status' => false,
+                'message' => 'Test not found',
+            ], 404);
+        }
 
         return response()->json([
             'status' => true,

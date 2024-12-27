@@ -80,18 +80,20 @@ class UserController extends Controller
         }
         $data =  $request->validated();
         $user = $this->userService->update($data,$id);
-        if($user){
+
+        if(!$user){
             return response()->json([
-                'status' => true,
-                'message' => 'User updated successfully',
-                'data' => $user
-            ], 200);
+                'status' => false,
+                'message' => 'User not found',
+            ], 404);
         }
 
         return response()->json([
-            'status' => false,
-            'message' => 'User not found',
+            'status' => true,
+            'message' => 'User updated successfully',
+            'data' => $user
         ], 200);
+
     }
     public function destroy($id){
         if(empty($id) || !is_numeric($id)){
