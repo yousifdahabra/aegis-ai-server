@@ -16,12 +16,17 @@ class QuestionController extends Controller
         $this->question_service = $question_service;
     }
 
+    public function show($id = 0){
+        $question = $this->question_service->get_questions($id);
+
+    }
+
     function store(AddQuestionRequest $request){
         $data =  $request->validated();
-        $test = $this->question_service->store($data);
+        $question = $this->question_service->store($data);
         return response()->json([
             'status' => true,
-            "data" => new QuestionResource($test),
+            "data" => new QuestionResource($question),
             "message" => 'Question created successfully',
         ], 201);
     }
