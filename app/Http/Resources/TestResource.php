@@ -7,13 +7,28 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class TestResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(Request $request): array
+
+    public function toArray($request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'user' => [
+                'id' => $this->user->id,
+                'name' => $this->user->name,
+                'email' => $this->user->email,
+            ],
+            'expert' => [
+                'id' => $this->expert->id,
+                'name' => $this->expert->name,
+                'email' => $this->expert->email,
+            ],
+            'test_state' => [
+                'id' => $this->test_state->id,
+                'title' => $this->test_state->name,
+            ],
+            'created_at' => $this->created_at->toDateTimeString(),
+            'updated_at' => $this->updated_at->toDateTimeString(),
+        ];
     }
 }
