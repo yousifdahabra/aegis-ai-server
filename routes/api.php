@@ -17,7 +17,7 @@ Route::post("/register", [UserController::class, "register"]);
 Route::post("/login", [UserController::class, "login"]);
 
 Route::middleware([ExpertMiddleware::class])->group(function () {
-    Route::middleware([ExpertMiddleware::class])->group(function () {
+    Route::middleware([AdminMiddleware::class])->group(function () {
         Route::prefix('users')->group(function () {
             Route::get('/{id?}', [UserController::class, 'show']);
             Route::put('/{id}', [UserController::class, 'update']);
@@ -31,6 +31,7 @@ Route::middleware([ExpertMiddleware::class])->group(function () {
     });
     Route::prefix('tests')->group(function () {
         Route::post('/', [TestController::class, 'store']);
+        Route::put('/{id}', [TestController::class, 'update']);
     });
 
 });
