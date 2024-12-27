@@ -7,7 +7,7 @@ class TestService{
 
     public function get_tests($id = 0){
         if($id > 0){
-            $test = Test::Fail($id);
+            $test = Test::find($id);
             if(!$test){
                 return false;
             }
