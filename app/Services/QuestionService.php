@@ -38,6 +38,21 @@ class QuestionService
         $question->title = $data['title'] ?? $question->title;
         $question->save();
 
+        foreach ($data['option_data'] as $option_data) {
+            if (isset($option_data['id'])) {
+                $option = Option::find($option_data['id']);
+                if ($option) {
+                    $option->title = $option_data['title'];
+                    $option->save();
+                }
+            } else {
+                $option = new Option;
+                $option->question_id = $question->id;
+                $option->title = $option_data['title'];
+                $option->save();
+            }
+        }
+
         return $question;
     }
 }
