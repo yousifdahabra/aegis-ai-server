@@ -7,7 +7,7 @@ class TestService{
 
     public function get_tests($id = 0){
         if($id > 0){
-            $test = Test::findOrFail($id);
+            $test = Test::Fail($id);
             if(!$test){
                 return false;
             }
@@ -39,7 +39,7 @@ class TestService{
     }
 
     public function delete($id){
-        $test = Test::findOrFail($id);
+        $test = Test::find($id);
         if(!$test){
             return false;
         }

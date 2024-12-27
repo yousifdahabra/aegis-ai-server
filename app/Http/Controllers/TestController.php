@@ -49,6 +49,7 @@ class TestController extends Controller
             "message" => 'Test update successfully',
         ], 201);
     }
+
     public function destroy($id){
         if(empty($id) || !is_numeric($id)){
             return response()->json([
@@ -62,7 +63,7 @@ class TestController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Expert not found',
-            ], 422);
+            ], 404);
         }
 
         return response()->json([
