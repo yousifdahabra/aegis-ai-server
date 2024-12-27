@@ -37,10 +37,10 @@ Route::middleware([ExpertMiddleware::class])->group(function () {
         Route::delete('/{id}', [TestController::class, 'destroy']);
     });
     Route::prefix('questions')->group(function () {
+        Route::get('/{id?}', [QuestionController::class, 'show']);
         Route::post('/', [QuestionController::class, 'store']);
         Route::put('/{id}', [QuestionController::class, 'update']);
         Route::delete('/{id}', [QuestionController::class, 'destroy']);
-
     });
 
 });
