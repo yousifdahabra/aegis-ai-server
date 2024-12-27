@@ -43,7 +43,7 @@ class UserService{
 
     public function get_users($id = 0,$role = 3){
         if($id > 0){
-            return User::findOrFail($id);
+            return User::find($id);
         }
         return User::all()->where('user_role_id',$role);
     }
