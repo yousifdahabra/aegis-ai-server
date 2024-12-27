@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Test\AddTestRequest;
+use App\Http\Resources\TestResource;
 use App\Services\TestService;
 
 class TestController extends Controller
@@ -15,6 +16,11 @@ class TestController extends Controller
     function store(AddTestRequest $request){
         $data =  $request->validated();
         $test = $this->testService->store($data);
+        return response()->json([
+            'status' => true,
+            "data" => new TestResource($test),
+            "message" => 'Test created successfully',
+        ], 201);
 
 
     }

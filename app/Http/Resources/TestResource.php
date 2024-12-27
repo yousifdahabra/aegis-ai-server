@@ -25,7 +25,7 @@ class TestResource extends JsonResource
             ],
             'test_state' => [
                 'id' => $this->test_state->id,
-                'title' => $this->test_state->name,
+                'title' => $this->test_state->title,
             ],
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),

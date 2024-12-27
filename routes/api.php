@@ -30,7 +30,7 @@ Route::middleware([ExpertMiddleware::class])->group(function () {
         });
     });
     Route::prefix('tests')->group(function () {
-        Route::get('/{id?}', [TestController::class, 'store']);
+        Route::post('/', [TestController::class, 'store']);
     });
 
 });
