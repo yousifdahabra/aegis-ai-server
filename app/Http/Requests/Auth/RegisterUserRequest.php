@@ -4,8 +4,8 @@ namespace App\Http\Requests\Auth;
 
 use App\Http\Requests\BaseRequest;
 
-class RegisterUserRequest extends BaseRequest
-{
+class RegisterUserRequest extends BaseRequest{
+
     public function authorize(): bool
     {
         return true;

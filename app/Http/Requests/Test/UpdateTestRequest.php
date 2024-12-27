@@ -4,8 +4,8 @@ namespace App\Http\Requests\Test;
 
 use App\Http\Requests\BaseRequest;
 
-class UpdateTestRequest extends BaseRequest
-{
+class UpdateTestRequest extends BaseRequest{
+
     public function authorize(): bool
     {
         return true;

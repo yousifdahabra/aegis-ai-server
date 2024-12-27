@@ -4,8 +4,8 @@ namespace App\Http\Requests\Expert;
 
 use App\Http\Requests\BaseRequest;
 
-class RegisterExpertRequest extends BaseRequest
-{
+class RegisterExpertRequest extends BaseRequest{
+
     public function authorize(): bool
     {
         return true;
@@ -24,7 +24,7 @@ class RegisterExpertRequest extends BaseRequest
             'documents.*' => 'file|mimes:pdf|max:2048',
         ];
     }
-    
+
     public function messages(){
         return [
             'name.required' => 'The name field is required.',

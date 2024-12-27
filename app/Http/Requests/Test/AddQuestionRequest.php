@@ -4,8 +4,8 @@ namespace App\Http\Requests\Test;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddQuestionRequest extends FormRequest
-{
+class AddQuestionRequest extends FormRequest{
+
     public function authorize(): bool
     {
         return true;
@@ -45,10 +45,5 @@ class AddQuestionRequest extends FormRequest
             'options.*.title.max' => 'Each option title may not be greater than 255 characters.',
         ];
     }
-
-
-
-
-
 
 }
