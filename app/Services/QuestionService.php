@@ -38,6 +38,11 @@ class QuestionService
         $question->title = $data['title'] ?? $question->title;
         $question->save();
 
+        $existing_option_ids = $question->options->pluck('id')->toArray();
+        $option_ids_from_data = array_column($data['option_data'], 'id');
+
+        $delete_ids = array_diff($existing_option_ids, $option_ids_from_data);
+
         foreach ($data['option_data'] as $option_data) {
             if (isset($option_data['id'])) {
                 $option = Option::find($option_data['id']);
@@ -50,6 +55,13 @@ class QuestionService
                 $option->question_id = $question->id;
                 $option->title = $option_data['title'];
                 $option->save();
+            }
+        }
+
+        foreach ($delete_ids as $option_id) {
+            $option = Option::find($option_id);
+            if ($option) {
+                $option->delete();
             }
         }
 
