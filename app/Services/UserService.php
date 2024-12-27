@@ -18,9 +18,8 @@ class UserService{
         return $user;
     }
 
-    public function update($data,$id): User
-    {
-        $user = User::findOrFail($id);
+    public function update($data,$id){
+        $user = User::find($id);
         if(!$user){
             return false;
         }
@@ -33,7 +32,7 @@ class UserService{
     }
 
     public function delete($id){
-        $user = User::findOrFail($id);
+        $user = User::find($id);
         if(!$user){
             return false;
         }

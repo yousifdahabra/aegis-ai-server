@@ -28,9 +28,8 @@ class TestService{
         return $test;
     }
 
-    public function update(array $data,$id): Test
-    {
-        $test = Test::findOrFail($id);
+    public function update(array $data,$id){
+        $test = Test::find($id);
         if(!$test){
             return false;
         }
