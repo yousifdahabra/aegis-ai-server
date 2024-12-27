@@ -15,7 +15,7 @@ class ExpertController extends Controller
     protected $user_service;
     protected $expert_service;
 
-    function __construct(user_service $user_service,expert_service $expert_service){
+    function __construct(UserService $user_service,ExpertService $expert_service){
         $this->user_service = $user_service;
         $this->expert_service = $expert_service;
     }
