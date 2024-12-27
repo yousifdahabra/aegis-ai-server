@@ -20,4 +20,10 @@ class Question extends Model
         return $this->belongsTo(QuestionType::class);
     }
 
+    public function tests(): BelongsTo
+    {
+        return $this->belongsTo(Test::class);
+    }
+
+
 }
