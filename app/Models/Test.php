@@ -30,4 +30,8 @@ class Test extends Model
         return $this->belongsTo(TestState::class);
     }
 
+    public function questions(){
+        return $this->hasMany(Question::class);
+    }
+
 }
