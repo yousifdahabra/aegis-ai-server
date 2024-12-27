@@ -1,16 +1,17 @@
 <?php
 
+namespace App\Services;
+
 use App\Models\Question;
 use App\Models\Option;
 
-class QuestionService
-{
+class QuestionService{
 
     public function store(array $data): Question
     {
         $question = new Question;
         $question->test_id = $data['test_id'];
-        $question->question_types_id = $data['question_types_id'];
+        $question->question_type_id = $data['question_type_id'];
         $question->previous_question_id = $data['previous_question_id'] ?? 0;
         $question->title = $data['title'];
         $question->save();
@@ -33,7 +34,7 @@ class QuestionService
         }
 
         $question->test_id = $data['test_id'] ?? $question->test_id;
-        $question->question_types_id = $data['question_types_id'] ?? $question->question_types_id;
+        $question->question_type_id = $data['question_type_id'] ?? $question->question_type_id;
         $question->previous_question_id = $data['previous_question_id'] ?? $question->previous_question_id;
         $question->title = $data['title'] ?? $question->title;
         $question->save();
