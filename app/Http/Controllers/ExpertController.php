@@ -55,6 +55,7 @@ class ExpertController extends Controller
             'data' => $user
         ], 200);
     }
+
     public function destroy($id){
         if(empty($id) || !is_numeric($id)){
             return response()->json([
