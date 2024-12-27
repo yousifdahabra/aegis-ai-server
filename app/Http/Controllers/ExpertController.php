@@ -12,23 +12,23 @@ use App\Services\ExpertService;
 
 class ExpertController extends Controller
 {
-    protected $userService;
-    protected $expertService;
+    protected $user_service;
+    protected $expert_service;
 
-    function __construct(UserService $userService,ExpertService $expertService){
-        $this->userService = $userService;
-        $this->expertService = $expertService;
+    function __construct(user_service $user_service,expert_service $expert_service){
+        $this->user_service = $user_service;
+        $this->expert_service = $expert_service;
     }
 
     function register(RegisterExpertRequest $request){
         $data =  $request->validated();
 
-        $user = $this->userService->register($data,2);
+        $user = $this->user_service->register($data,2);
         $data['user_id'] = $user->id;
-        $expert = $this->expertService->store($data);
+        $expert = $this->expert_service->store($data);
         $expert_request_id = $expert->id;
         $data['expert_request_id'] = $expert_request_id;
-        $expert_request = $this->expertService->store_files($data);
+        $expert_request = $this->expert_service->store_files($data);
 
         $token = JWTAuth::fromUser($user);
 
@@ -40,7 +40,7 @@ class ExpertController extends Controller
         ], 201);
     }
     public function show($id = 0){
-        $user = $this->userService->get_users($id,2);
+        $user = $this->user_service->get_users($id,2);
 
         if(!$user){
             return response()->json([
@@ -63,8 +63,8 @@ class ExpertController extends Controller
                 "message" => 'Expert Error',
             ], 422);
         }
-        $user = $this->userService->delete($id);
-        $expert = $this->expertService->delete($id);
+        $user = $this->user_service->delete($id);
+        $expert = $this->expert_service->delete($id);
 
         if(!$user){
             return response()->json([

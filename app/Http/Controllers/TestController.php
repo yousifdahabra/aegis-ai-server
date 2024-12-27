@@ -9,14 +9,14 @@ use App\Services\TestService;
 
 class TestController extends Controller
 {
-    protected $testService;
+    protected $test_service;
 
-    function __construct(TestService $testService){
-        $this->testService = $testService;
+    function __construct(test_service $test_service){
+        $this->test_service = $test_service;
     }
 
     public function show($id = 0){
-        $tests = $this->testService->get_tests($id);
+        $tests = $this->test_service->get_tests($id);
 
         if(!$tests){
             return response()->json([
@@ -35,7 +35,7 @@ class TestController extends Controller
 
     function store(AddTestRequest $request){
         $data =  $request->validated();
-        $test = $this->testService->store($data);
+        $test = $this->test_service->store($data);
         return response()->json([
             'status' => true,
             "data" => new TestResource($test),
@@ -52,7 +52,7 @@ class TestController extends Controller
         }
 
         $data =  $request->validated();
-        $test = $this->testService->update($data,$id);
+        $test = $this->test_service->update($data,$id);
 
         if(!$test){
             return response()->json([
@@ -75,7 +75,7 @@ class TestController extends Controller
                 "message" => 'Expert Error',
             ], 422);
         }
-        $test = $this->testService->delete($id);
+        $test = $this->test_service->delete($id);
 
         if(!$test){
             return response()->json([

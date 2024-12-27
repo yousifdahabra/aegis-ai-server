@@ -13,16 +13,16 @@ use App\Services\UserService;
 class UserController extends Controller
 {
 
-    protected $userService;
+    protected $user_service;
 
-    function __construct(UserService $userService){
-        $this->userService = $userService;
+    function __construct(user_service $user_service){
+        $this->user_service = $user_service;
     }
 
     function register(RegisterUserRequest $request){
         $data =  $request->validated();
 
-        $user = $this->userService->register($data);
+        $user = $this->user_service->register($data);
 
         $token = JWTAuth::fromUser($user);
 
@@ -56,7 +56,7 @@ class UserController extends Controller
     }
 
     public function show($id = 0){
-        $user = $this->userService->get_users($id);
+        $user = $this->user_service->get_users($id);
         if($user){
             return response()->json([
                 'status' => true,
@@ -79,7 +79,7 @@ class UserController extends Controller
             ], 422);
         }
         $data =  $request->validated();
-        $user = $this->userService->update($data,$id);
+        $user = $this->user_service->update($data,$id);
 
         if(!$user){
             return response()->json([
@@ -102,7 +102,7 @@ class UserController extends Controller
                 "message" => 'User Error',
             ], 422);
         }
-        $user = $this->userService->delete($id);
+        $user = $this->user_service->delete($id);
         if(!$user){
             return response()->json([
                 'status' => false,
