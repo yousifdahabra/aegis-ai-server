@@ -7,6 +7,17 @@ use App\Models\Option;
 
 class QuestionService{
 
+    public function get_questions($id = 0){
+        if($id > 0){
+            $question = Question::find($id);
+            if(!$question){
+                return false;
+            }
+            return $question;
+        }
+        return Question::all();
+    }
+
     public function store(array $data): Question
     {
         $question = new Question;
