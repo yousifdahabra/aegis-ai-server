@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Question extends Model
 {
@@ -13,5 +14,10 @@ class Question extends Model
         'previous_question_id',
         'title',
     ];
+
+    public function question_type(): BelongsTo
+    {
+        return $this->belongsTo(QuestionType::class);
+    }
 
 }
