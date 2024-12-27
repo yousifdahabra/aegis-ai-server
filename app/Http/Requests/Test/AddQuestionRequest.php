@@ -18,6 +18,8 @@ class AddQuestionRequest extends FormRequest
             'test_id' => 'required|numeric|exists:tests,id',
             'question_type_id' => 'required|numeric|exists:question_types,id',
             'previous_question_id' => 'numeric|exists:questions,id',
+            'options' => 'required|array|min:2',
+            'options.*.title' => 'required|string|max:255',
         ];
     }
 
