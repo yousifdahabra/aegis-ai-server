@@ -12,6 +12,11 @@ class TestController extends Controller
     function __construct(TestService $testService){
         $this->testService = $testService;
     }
+    function store(AddTestRequest $request){
+        $data =  $request->validated();
+        $test = $this->testService->store($data);
 
+
+    }
 
 }
