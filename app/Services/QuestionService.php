@@ -40,11 +40,11 @@ class QuestionService{
         $question->save();
 
         $db_options_id = $question->options->pluck('id')->toArray();
-        $data_options_id = array_column($data['option_data'], 'id');
+        $data_options_id = array_column($data['options'], 'id');
 
         $delete_ids = array_diff($db_options_id, $data_options_id);
 
-        foreach ($data['option_data'] as $option_data) {
+        foreach ($data['options'] as $option_data) {
             if (isset($option_data['id'])) {
                 $option = Option::find($option_data['id']);
                 if ($option) {

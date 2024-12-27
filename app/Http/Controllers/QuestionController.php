@@ -44,6 +44,11 @@ class QuestionController extends Controller
             ], 404);
         }
 
-     }
+        return response()->json([
+            'status' => true,
+            "data" => new QuestionResource($question),
+            "message" => 'Question update successfully',
+        ], 201);
+    }
 
 }

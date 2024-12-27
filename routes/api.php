@@ -38,7 +38,7 @@ Route::middleware([ExpertMiddleware::class])->group(function () {
     });
     Route::prefix('questions')->group(function () {
         Route::post('/', [QuestionController::class, 'store']);
-        Route::put('/', [QuestionController::class, 'update']);
+        Route::put('/{id}', [QuestionController::class, 'update']);
     });
 
 });
