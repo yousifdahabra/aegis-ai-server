@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
-class UserRole extends Model
-{
+class UserRole extends Model{
     protected $fillable = [
         'title',
     ];
