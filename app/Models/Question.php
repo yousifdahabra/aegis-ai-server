@@ -14,6 +14,10 @@ class Question extends Model{
         'title',
     ];
 
+    public function options(){
+        return $this->hasMany(Option::class);
+    }
+
     public function question_type(): BelongsTo
     {
         return $this->belongsTo(QuestionType::class);
@@ -23,6 +27,7 @@ class Question extends Model{
     {
         return $this->belongsTo(Test::class);
     }
+
 
 
 }

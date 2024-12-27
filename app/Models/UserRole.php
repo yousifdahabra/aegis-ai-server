@@ -14,8 +14,7 @@ class UserRole extends Model{
     public const EXPERT = 2;
     public const USER = 3;
 
-    public function users()
-    {
+    public function users(){
         return $this->hasMany(User::class);
     }
 
