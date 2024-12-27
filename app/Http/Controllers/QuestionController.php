@@ -19,6 +19,18 @@ class QuestionController extends Controller
     public function show($id = 0){
         $question = $this->question_service->get_questions($id);
 
+        if(!$question){
+            return response()->json([
+                'status' => false,
+                'message' => 'Expert error',
+            ], 422);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Get Questions successfully',
+            'data' => QuestionResource::collection($question),
+        ], 200);
     }
 
     function store(AddQuestionRequest $request){
