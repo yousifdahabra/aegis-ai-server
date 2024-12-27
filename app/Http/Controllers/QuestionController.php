@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Test\AddQuestionRequest;
+use App\Http\Requests\Test\UpdateQuestionRequest;
 use App\Http\Resources\QuestionResource;
 use Illuminate\Http\Request;
 use App\Services\QuestionService;
@@ -24,5 +25,25 @@ class QuestionController extends Controller
             "message" => 'Question created successfully',
         ], 201);
     }
+
+    function update(UpdateQuestionRequest $request,$id){
+        if(empty($id) || !is_numeric($id)){
+            return response()->json([
+                'status' => false,
+                "message" => 'Question Error',
+            ], 422);
+        }
+
+        $data =  $request->validated();
+        $question = $this->question_service->update($data,$id);
+
+        if(!$question){
+            return response()->json([
+                'status' => false,
+                'message' => 'Question not found',
+            ], 404);
+        }
+
+     }
 
 }
