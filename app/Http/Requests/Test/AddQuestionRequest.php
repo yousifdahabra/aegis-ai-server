@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Test;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class AddQuestionRequest extends FormRequest{
+class AddQuestionRequest extends BaseRequest{
 
     public function authorize(): bool
     {
@@ -18,7 +18,7 @@ class AddQuestionRequest extends FormRequest{
             'test_id' => 'required|numeric|exists:tests,id',
             'question_type_id' => 'required|numeric|exists:question_types,id',
             'previous_question_id' => 'numeric|exists:questions,id',
-            'options' => 'required|array|min:2',
+            'options' => 'required|array|min:1',
             'options.*.title' => 'required|string|max:255',
         ];
     }
