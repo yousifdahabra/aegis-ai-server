@@ -38,10 +38,10 @@ class QuestionService
         $question->title = $data['title'] ?? $question->title;
         $question->save();
 
-        $existing_option_ids = $question->options->pluck('id')->toArray();
-        $option_ids_from_data = array_column($data['option_data'], 'id');
+        $db_options_id = $question->options->pluck('id')->toArray();
+        $data_options_id = array_column($data['option_data'], 'id');
 
-        $delete_ids = array_diff($existing_option_ids, $option_ids_from_data);
+        $delete_ids = array_diff($db_options_id, $data_options_id);
 
         foreach ($data['option_data'] as $option_data) {
             if (isset($option_data['id'])) {
