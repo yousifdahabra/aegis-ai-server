@@ -50,5 +50,14 @@ class QuestionController extends Controller
             "message" => 'Question update successfully',
         ], 201);
     }
+    public function destroy($id){
+        if(empty($id) || !is_numeric($id)){
+            return response()->json([
+                'status' => false,
+                "message" => 'Question Error',
+            ], 422);
+        }
+
+    }
 
 }
