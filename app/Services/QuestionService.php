@@ -55,4 +55,18 @@ class QuestionService
 
         return $question;
     }
+
+    public function delete($id){
+        $question = Question::find($id);
+        if (!$question) {
+            return false;
+        }
+
+        $question->options()->delete();
+
+        $question->delete();
+
+        return true;
+    }
+
 }
