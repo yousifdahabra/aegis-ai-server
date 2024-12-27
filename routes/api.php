@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExpertController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TestController;
 
 use App\Http\Middleware\JwtMiddleware;
@@ -34,6 +35,9 @@ Route::middleware([ExpertMiddleware::class])->group(function () {
         Route::post('/', [TestController::class, 'store']);
         Route::put('/{id}', [TestController::class, 'update']);
         Route::delete('/{id}', [TestController::class, 'destroy']);
+    });
+    Route::prefix('questions')->group(function () {
+        Route::post('/', [QuestionController::class, 'store']);
     });
 
 });
