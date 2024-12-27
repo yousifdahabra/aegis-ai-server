@@ -11,7 +11,7 @@ class TestController extends Controller
 {
     protected $test_service;
 
-    function __construct(test_service $test_service){
+    function __construct(TestService $test_service){
         $this->test_service = $test_service;
     }
 
