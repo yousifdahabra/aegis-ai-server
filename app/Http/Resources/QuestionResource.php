@@ -9,7 +9,12 @@ class QuestionResource extends JsonResource{
 
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'question_type' => new QuestionTypeResource($this->question_type),
+            'options' => OptionResource::collection($this->options),
+        ];
     }
 
 }
