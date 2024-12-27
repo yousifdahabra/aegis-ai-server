@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\auth\RegisterUserRequest;
 use App\Http\Requests\Auth\UpdateUserRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
