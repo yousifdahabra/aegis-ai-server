@@ -103,18 +103,19 @@ class UserController extends Controller
             ], 422);
         }
         $user = $this->userService->delete($id);
-        if($user){
+        if(!$user){
             return response()->json([
-                'status' => true,
-                'message' => 'User deleted successfully',
-                'data' => $user
-            ], 200);
+                'status' => false,
+                'message' => 'User not found',
+            ], 422);
         }
 
         return response()->json([
-            'status' => false,
-            'message' => 'User not found',
-        ], 422);
+            'status' => true,
+            'message' => 'User deleted successfully',
+            'data' => $user
+        ], 200);
+
 
     }
 }

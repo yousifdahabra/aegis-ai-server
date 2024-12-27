@@ -64,18 +64,18 @@ class ExpertController extends Controller
         $user = $this->userService->delete($id);
         $expert = $this->expertService->delete($id);
 
-        if($user){
+        if(!$user){
             return response()->json([
-                'status' => true,
-                'message' => 'Expert deleted successfully',
-                'data' => [$user,$expert]
-            ], 200);
+                'status' => false,
+                'message' => 'Expert not found',
+            ], 422);
         }
 
         return response()->json([
-            'status' => false,
-            'message' => 'Expert not found',
-        ], 422);
+            'status' => true,
+            'message' => 'Expert deleted successfully',
+            'data' => [$user,$expert]
+        ], 200);
 
     }
 
