@@ -28,7 +28,7 @@ class TestController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Get Tests successfully',
-            'data' => $tests
+            'data' => TestResource::collection($tests),
         ], 200);
     }
 
