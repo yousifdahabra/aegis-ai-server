@@ -14,6 +14,7 @@ class TestController extends Controller
     function __construct(TestService $testService){
         $this->testService = $testService;
     }
+
     function store(AddTestRequest $request){
         $data =  $request->validated();
         $test = $this->testService->store($data);
@@ -23,6 +24,7 @@ class TestController extends Controller
             "message" => 'Test created successfully',
         ], 201);
     }
+
     function update(UpdateTestRequest $request,$id){
         if(empty($id) || !is_numeric($id)){
             return response()->json([
@@ -46,6 +48,28 @@ class TestController extends Controller
             "data" => new TestResource($test),
             "message" => 'Test update successfully',
         ], 201);
+    }
+    public function destroy($id){
+        if(empty($id) || !is_numeric($id)){
+            return response()->json([
+                'status' => false,
+                "message" => 'Expert Error',
+            ], 422);
+        }
+        $test = $this->testService->delete($id);
+
+        if(!$test){
+            return response()->json([
+                'status' => false,
+                'message' => 'Expert not found',
+            ], 422);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Test deleted successfully',
+        ], 200);
+
     }
 
 
