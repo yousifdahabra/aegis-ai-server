@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExpertController;
+use App\Http\Controllers\OptionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TestController;
 
@@ -44,7 +45,7 @@ Route::middleware([ExpertMiddleware::class])->group(function () {
     });
 
     Route::prefix('options')->group(function () {
-        Route::post('/', [QuestionController::class, 'store']);
+        Route::post('/', [OptionController::class, 'store']);
     });
 
 });
