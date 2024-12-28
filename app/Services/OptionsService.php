@@ -5,6 +5,17 @@ use App\Models\Option;
 
 Class OptionsService{
 
+    public function get_options($id = 0){
+        if($id > 0){
+            $option = Option::find($id);
+            if(!$option){
+                return false;
+            }
+            return $option;
+        }
+        return Option::all();
+    }
+
     public function store(array $data,$question_id): Option
     {
         $option = new Option;
