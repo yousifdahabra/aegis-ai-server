@@ -8,8 +8,8 @@ use App\Http\Resources\QuestionResource;
 use Illuminate\Http\Request;
 use App\Services\QuestionService;
 
-class QuestionController extends Controller
-{
+class QuestionController extends Controller{
+
     protected $question_service;
 
     function __construct(QuestionService $question_service){
