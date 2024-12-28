@@ -6,6 +6,18 @@ use App\Models\UserAnswer;
 
 class UserAnswersService{
 
+    public function get_user_answers($id = 0){
+        if($id > 0){
+            $user_answer = UserAnswer::find($id);
+            if(!$user_answer){
+                return false;
+            }
+            return $user_answer;
+        }
+        return UserAnswer::all();
+    }
+
+
     public function store(array $data): UserAnswer
     {
         $user_answer = new UserAnswer;
