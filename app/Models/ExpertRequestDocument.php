@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ExpertRequestDocument extends Model{
+
     protected $fillable = [
         'expert_request_id',
         'file_path',
