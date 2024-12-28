@@ -50,5 +50,18 @@ class OptionController extends Controller
         ], 201);
     }
 
+    public function destroy($question_id,$id){
+        if(empty($id) || !is_numeric($id)){
+            return response()->json([
+                'status' => false,
+                "message" => 'Option Error',
+            ], 422);
+        }
+        $option = $this->option_service->delete($id);
+
+
+
+
+    }
 
 }
