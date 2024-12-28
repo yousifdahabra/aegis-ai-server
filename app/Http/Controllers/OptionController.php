@@ -25,6 +25,12 @@ class OptionController extends Controller
                 'message' => 'Option error',
             ], 422);
         }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Get Options successfully',
+            'data' => $id == 0 ? OptionResource::collection($option):new OptionResource($option),
+        ], 200);
     }
 
 
