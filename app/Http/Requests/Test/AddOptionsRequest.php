@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Test;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class AddOptionsRequest extends FormRequest
-{
+class AddOptionsRequest extends BaseRequest{
+
     public function authorize(): bool
     {
         return false;
