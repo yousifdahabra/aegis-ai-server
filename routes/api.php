@@ -47,6 +47,8 @@ Route::middleware([ExpertMiddleware::class])->group(function () {
     Route::prefix('options')->group(function () {
         Route::post('/', [OptionController::class, 'store']);
         Route::put('/{questions_id}/{id}', [OptionController::class, 'update']);
+        Route::delete('/{questions_id}/{id}', [OptionController::class, 'destroy']);
+
     });
 
 });
