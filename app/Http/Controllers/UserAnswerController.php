@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserAnswerResource;
 use App\Services\UserAnswersService;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class UserAnswerController extends Controller{
         return response()->json([
             'status' => true,
             'message' => 'Get Tests successfully',
-            'data' => TestResource::collection($tests),
+            'data' => UserAnswerResource::collection($user_answers_service),
         ], 200);
     }
 
