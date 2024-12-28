@@ -19,4 +19,9 @@ class UserAnswer extends Model{
         return $this->hasOne(Question::class);
     }
 
+    public function user(): HasOne
+    {
+        return $this->hasOne(Question::class);
+    }
+
 }
