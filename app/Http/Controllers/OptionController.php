@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Test\AddOptionsRequest;
+use App\Http\Resources\OptionResource;
 use App\Services\OptionsService;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,11 @@ class OptionController extends Controller
     function store(AddOptionsRequest $request,$question_id){
         $data =  $request->validated();
         $option = $this->option_service->store($data,$question_id);
-
+        return response()->json([
+            'status' => true,
+            "data" => new OptionResource($option),
+            "message" => 'Option created successfully',
+        ], 201);
     }
 
 }
