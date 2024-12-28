@@ -5,11 +5,11 @@ use App\Models\Option;
 
 Class OptionsService{
 
-    public function store(array $data): Option
+    public function store(array $data,$question_id): Option
     {
         $option = new Option;
-        $option->question_id = $data['question_id'];
         $option->title = $data['title'];
+        $option->question_id = $question_id;
         $option->save();
         return $option;
     }

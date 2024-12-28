@@ -14,8 +14,9 @@ class OptionController extends Controller
         $this->option_service = $option_service;
     }
 
-    function store(AddOptionsRequest $request){
+    function store(AddOptionsRequest $request,$question_id){
         $data =  $request->validated();
+        $option = $this->option_service->store($data,$question_id);
 
     }
 
