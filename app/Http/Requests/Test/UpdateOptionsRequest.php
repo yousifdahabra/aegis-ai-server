@@ -7,7 +7,7 @@ use App\Http\Requests\BaseRequest;
 class UpdateOptionsRequest extends BaseRequest{
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     public function rules(): array

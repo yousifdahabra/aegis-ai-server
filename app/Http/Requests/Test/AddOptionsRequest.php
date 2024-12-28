@@ -8,7 +8,7 @@ class AddOptionsRequest extends BaseRequest{
 
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     public function rules(): array
