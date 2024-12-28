@@ -26,5 +26,14 @@ class UserAnswersService{
         return $user_answer;
     }
 
+    public function delete($id){
+        $user_answer = UserAnswer::find($id);
+        if(!$user_answer){
+            return false;
+        }
+        $user_answer->delete();
+        return true;
+    }
+
 
 }
