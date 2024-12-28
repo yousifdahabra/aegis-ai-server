@@ -16,11 +16,11 @@ Class OptionsService{
         return Option::all();
     }
 
-    public function store(array $data,$question_id): Option
+    public function store(array $data): Option
     {
         $option = new Option;
         $option->title = $data['title'];
-        $option->question_id = $question_id;
+        $option->question_id = $data['question_id'];
         $option->save();
         return $option;
     }

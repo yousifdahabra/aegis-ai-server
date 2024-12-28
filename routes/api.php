@@ -45,12 +45,10 @@ Route::middleware([ExpertMiddleware::class])->group(function () {
     });
 
     Route::prefix('options')->group(function () {
-
-        Route::get('/{id?}', [OptionController::class, 'show']);
+        Route::get('/{questions_id}/{id?}', [OptionController::class, 'show']);
         Route::post('/', [OptionController::class, 'store']);
         Route::put('/{questions_id}/{id}', [OptionController::class, 'update']);
         Route::delete('/{questions_id}/{id}', [OptionController::class, 'destroy']);
-
     });
 
 });
