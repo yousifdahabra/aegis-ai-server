@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class UserAnswer extends Model{
 
@@ -12,5 +13,10 @@ class UserAnswer extends Model{
         'question_id',
         'option_answer',
     ];
+
+    public function question(): HasOne
+    {
+        return $this->hasOne(Question::class);
+    }
 
 }
