@@ -59,8 +59,17 @@ class OptionController extends Controller
         }
         $option = $this->option_service->delete($id);
 
+        if(!$option){
+            return response()->json([
+                'status' => false,
+                'message' => 'Option not found',
+            ], 404);
+        }
 
-
+        return response()->json([
+            'status' => true,
+            'message' => 'Option deleted successfully',
+        ], 200);
 
     }
 
