@@ -42,6 +42,12 @@ class OptionController extends Controller
                 'message' => 'Option not found',
             ], 404);
         }
+
+        return response()->json([
+            'status' => true,
+            "data" => new OptionResource($option),
+            "message" => 'Option update successfully',
+        ], 201);
     }
 
 
