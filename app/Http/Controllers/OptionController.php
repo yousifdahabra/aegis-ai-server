@@ -8,8 +8,8 @@ use App\Http\Resources\OptionResource;
 use App\Services\OptionsService;
 use Illuminate\Http\Request;
 
-class OptionController extends Controller
-{
+class OptionController extends Controller{
+
     protected $option_service;
 
     function __construct(OptionsService $option_service){
@@ -34,9 +34,9 @@ class OptionController extends Controller
     }
 
 
-    function store(AddOptionsRequest $request,$question_id){
+    function store(AddOptionsRequest $request){
         $data =  $request->validated();
-        $option = $this->option_service->store($data,$question_id);
+        $option = $this->option_service->store($data);
         return response()->json([
             'status' => true,
             "data" => new OptionResource($option),
