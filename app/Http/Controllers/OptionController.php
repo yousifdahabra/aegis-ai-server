@@ -34,6 +34,14 @@ class OptionController extends Controller
             ], 422);
         }
         $data =  $request->validated();
+        $option = $this->option_service->update($data,$id);
+
+        if(!$option){
+            return response()->json([
+                'status' => false,
+                'message' => 'Option not found',
+            ], 404);
+        }
     }
 
 
