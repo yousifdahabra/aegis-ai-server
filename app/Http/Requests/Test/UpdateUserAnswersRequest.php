@@ -2,19 +2,16 @@
 
 namespace App\Http\Requests\Test;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class UpdateUserAnswersRequest extends FormRequest{
-
-    public function authorize(): bool
-    {
-        return true;
-    }
+class UpdateUserAnswersRequest extends BaseRequest{
 
     public function rules(): array
     {
         return [
-
+            'option_answer' => 'required|string',
         ];
     }
+
+
 }
