@@ -13,6 +13,12 @@ class UserAnswerResource extends JsonResource{
             'id' => $this->id,
             'option_answer' => $this->option_answer,
             'question' => new QuestionResource($this->question),
+            'user' => [
+                'id' => $this->user->id,
+                'name' => $this->user->name,
+                'email' => $this->user->email,
+            ],
+
         ];
     }
 }
