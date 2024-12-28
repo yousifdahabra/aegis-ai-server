@@ -16,6 +16,18 @@ class OptionController extends Controller
         $this->option_service = $option_service;
     }
 
+    public function show($question_id,$id = 0){
+        $option = $this->option_service->get_options($id);
+
+        if(!$option){
+            return response()->json([
+                'status' => false,
+                'message' => 'Option error',
+            ], 422);
+        }
+    }
+
+
     function store(AddOptionsRequest $request,$question_id){
         $data =  $request->validated();
         $option = $this->option_service->store($data,$question_id);
