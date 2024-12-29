@@ -35,7 +35,11 @@ class UserAnswerController extends Controller{
     function store(AddUserAnswersRequest $request){
         $data =  $request->validated();
         $user_answers_service = $this->user_answers_service->store($data);
-
+        return response()->json([
+            'status' => true,
+            "data" => new UserAnswerResource($user_answers_service),
+            "message" => 'Test created successfully',
+        ], 201);
     }
 
 }
