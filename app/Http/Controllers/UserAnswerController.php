@@ -54,6 +54,18 @@ class UserAnswerController extends Controller{
         $data =  $request->validated();
         $user_answers_service = $this->user_answers_service->update($data,$id);
 
-     }
+        if(!$user_answers_service){
+            return response()->json([
+                'status' => false,
+                'message' => 'User Answer not found',
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => true,
+            "data" => new UserAnswerResource($user_answers_service),
+            "message" => 'User Answer update successfully',
+        ], 201);
+    }
 
 }
