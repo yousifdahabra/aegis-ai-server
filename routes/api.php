@@ -53,6 +53,7 @@ Route::middleware([ExpertMiddleware::class])->group(function () {
 
     Route::prefix('user_answers')->group(function () {
         Route::get('/{id?}', [UserAnswerController::class, 'show']);
+        Route::post('/', [UserAnswerController::class, 'store']);
     });
 
 });
