@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Question extends Model{
 
@@ -28,6 +29,10 @@ class Question extends Model{
         return $this->belongsTo(Test::class);
     }
 
+    public function user_answer(): HasOne
+    {
+        return $this->hasOne(UserAnswer::class);
+    }
 
 
 }
