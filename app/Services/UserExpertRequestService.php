@@ -38,4 +38,13 @@ class UserExpertRequestService{
         return $user_expert_request;
     }
 
+    public function delete($id){
+        $user_expert_request = UserExpertRequest::find($id);
+        if(!$user_expert_request){
+            return false;
+        }
+        $user_expert_request->delete();
+        return true;
+    }
+
 }
