@@ -88,7 +88,6 @@ class UserAnswerController extends Controller{
             'status' => true,
             'message' => 'User Answer deleted successfully',
         ], 200);
-
     }
 
 }
