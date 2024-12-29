@@ -51,6 +51,19 @@ class UserExpertRequestController extends Controller{
 
         $data =  $request->validated();
         $user_expert_request = $this->user_expert_request->update($data,$id);
-     }
+
+        if(!$user_expert_request){
+            return response()->json([
+                'status' => false,
+                'message' => 'User Expert Request not found',
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => true,
+            "data" => new UserExpertRequestResource($user_expert_request),
+            "message" => 'User Expert Request update successfully',
+        ], 201);
+    }
 
 }
