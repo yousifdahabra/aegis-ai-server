@@ -66,4 +66,27 @@ class UserExpertRequestController extends Controller{
         ], 201);
     }
 
+    public function destroy($id){
+        if(empty($id) || !is_numeric($id)){
+            return response()->json([
+                'status' => false,
+                "message" => 'User Expert Request Error',
+            ], 422);
+        }
+        $user_expert_request = $this->user_expert_request->delete($id);
+
+        if(!$user_expert_request){
+            return response()->json([
+                'status' => false,
+                'message' => 'User Expert Request not found',
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User Expert Request deleted successfully',
+        ], 200);
+
+    }
+
 }
