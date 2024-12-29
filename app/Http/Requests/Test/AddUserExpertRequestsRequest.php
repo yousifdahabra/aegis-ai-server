@@ -2,27 +2,24 @@
 
 namespace App\Http\Requests\Test;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class AddUserExpertRequestsRequest extends FormRequest
-{
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+class AddUserExpertRequestsRequest extends BaseRequest{
+
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
+
     public function rules(): array
     {
         return [
-            //
+            'about_user' => 'required|string',
+            'user_note' => 'required|string',
+            'links' => 'required|string',
+            'user_id' => 'required|numeric|exists:users,id',
+            'expert_id' => 'required|numeric|exists:users,id',
         ];
     }
 }
