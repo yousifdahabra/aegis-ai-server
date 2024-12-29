@@ -63,6 +63,7 @@ Route::middleware([ExpertMiddleware::class])->group(function () {
         Route::get('/{id?}', [UserExpertRequestController::class, 'show']);
         Route::post('/', [UserExpertRequestController::class, 'store']);
         Route::put('/{id}', [UserExpertRequestController::class, 'update']);
+        Route::delete('/{id}', [UserExpertRequestController::class, 'destroy']);
     });
 
 });
