@@ -27,4 +27,15 @@ class UserExpertRequestService{
         return $user_expert_request;
     }
 
+    public function update(array $data,$id){
+        $user_expert_request = UserExpertRequest::find($id);
+        if(!$user_expert_request){
+            return false;
+        }
+        $user_expert_request->about_user = $data['about_user'];
+        $user_expert_request->user_note = $data['user_note'];
+        $user_expert_request->save();
+        return $user_expert_request;
+    }
+
 }
