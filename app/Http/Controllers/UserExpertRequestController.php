@@ -14,4 +14,17 @@ class UserExpertRequestController extends Controller{
         $this->user_expert_request = $user_expert_request;
     }
 
+    public function show($id = 0){
+        $user_expert_request = $this->user_expert_request->get_user_expert_requests($id);
+
+        if(!$user_expert_request){
+            return response()->json([
+                'status' => false,
+                'message' => 'Expert User Expert Request',
+            ], 422);
+        }
+
+
+    }
+
 }
