@@ -14,14 +14,14 @@ class UserAnswer extends Model{
         'option_answer',
     ];
 
-    public function question(): HasOne
+    public function question(): BelongsTo
     {
-        return $this->hasOne(Question::class);
+        return $this->belongsTo(Question::class);
     }
 
-    public function user(): HasOne
+    public function user(): belongsTo
     {
-        return $this->hasOne(Question::class);
+        return $this->belongsTo(Question::class);
     }
 
 }
