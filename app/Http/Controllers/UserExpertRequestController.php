@@ -27,8 +27,19 @@ class UserExpertRequestController extends Controller{
         return response()->json([
             'status' => true,
             'message' => 'Get User Expert Request successfully',
-            'data' => $id == 0 ? QuestionResource::collection($user_expert_request):new QuestionResource($user_expert_request),
+            'data' => $id == 0 ? UserExpertRequestResource::collection($user_expert_request):new UserExpertRequestResource($user_expert_request),
         ], 200);
     }
+
+    function store(AddQuestionRequest $request){
+        $data =  $request->validated();
+        $user_expert_request = $this->user_expert_request->store($data);
+        return response()->json([
+            'status' => true,
+            "data" => new UserExpertRequestResource($user_expert_request),
+            "message" => 'Question created successfully',
+        ], 201);
+    }
+
 
 }
