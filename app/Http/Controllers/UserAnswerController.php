@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Test\AddUserAnswersRequest;
 use App\Http\Resources\UserAnswerResource;
 use App\Services\UserAnswersService;
 use Illuminate\Http\Request;
@@ -29,6 +30,12 @@ class UserAnswerController extends Controller{
             'message' => 'Get Tests successfully',
             'data' => UserAnswerResource::collection($user_answers_service),
         ], 200);
+    }
+
+    function store(AddUserAnswersRequest $request){
+        $data =  $request->validated();
+        $user_answers_service = $this->user_answers_service->store($data);
+
     }
 
 }
