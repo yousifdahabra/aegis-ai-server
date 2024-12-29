@@ -68,4 +68,27 @@ class UserAnswerController extends Controller{
         ], 201);
     }
 
+    public function destroy($id){
+        if(empty($id) || !is_numeric($id)){
+            return response()->json([
+                'status' => false,
+                "message" => 'User Answer Error',
+            ], 422);
+        }
+        $user_answers_service = $this->user_answers_service->delete($id);
+
+        if(!$user_answers_service){
+            return response()->json([
+                'status' => false,
+                'message' => 'User Answer not found',
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User Answer deleted successfully',
+        ], 200);
+
+    }
+
 }

@@ -21,7 +21,7 @@ class TestController extends Controller
         if(!$tests){
             return response()->json([
                 'status' => false,
-                'message' => 'Expert error',
+                'message' => 'Test error',
             ], 422);
         }
 
@@ -72,7 +72,7 @@ class TestController extends Controller
         if(empty($id) || !is_numeric($id)){
             return response()->json([
                 'status' => false,
-                "message" => 'Expert Error',
+                "message" => 'Test Error',
             ], 422);
         }
         $test = $this->test_service->delete($id);
@@ -80,7 +80,7 @@ class TestController extends Controller
         if(!$test){
             return response()->json([
                 'status' => false,
-                'message' => 'Expert not found',
+                'message' => 'Test not found',
             ], 404);
         }
 
