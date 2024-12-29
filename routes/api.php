@@ -62,6 +62,7 @@ Route::middleware([ExpertMiddleware::class])->group(function () {
     Route::prefix('user_expert_requests')->group(function () {
         Route::get('/{id?}', [UserExpertRequestController::class, 'show']);
         Route::post('/', [UserExpertRequestController::class, 'store']);
+        Route::put('/{id}', [UserExpertRequestController::class, 'update']);
     });
 
 });
