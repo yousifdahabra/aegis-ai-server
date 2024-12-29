@@ -31,15 +31,26 @@ class UserExpertRequestController extends Controller{
         ], 200);
     }
 
-    function store(AddQuestionRequest $request){
+    function store(AddUserExpertRequestsRequest $request){
         $data =  $request->validated();
         $user_expert_request = $this->user_expert_request->store($data);
         return response()->json([
             'status' => true,
             "data" => new UserExpertRequestResource($user_expert_request),
-            "message" => 'Question created successfully',
+            "message" => 'User Expert Request created successfully',
         ], 201);
     }
 
+    function update(UpdateUserExpertRequestsRRequest $request,$id){
+        if(empty($id) || !is_numeric($id)){
+            return response()->json([
+                'status' => false,
+                "message" => 'User Expert Request Error',
+            ], 422);
+        }
+
+        $data =  $request->validated();
+        $user_expert_request = $this->user_expert_request->update($data,$id);
+     }
 
 }
