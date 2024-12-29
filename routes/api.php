@@ -8,6 +8,7 @@ use App\Http\Controllers\OptionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserAnswerController;
+use App\Http\Controllers\UserExpertRequestController;
 use App\Http\Middleware\JwtMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ExpertMiddleware;
@@ -56,6 +57,10 @@ Route::middleware([ExpertMiddleware::class])->group(function () {
         Route::post('/', [UserAnswerController::class, 'store']);
         Route::put('/{id}', [UserAnswerController::class, 'update']);
         Route::delete('/{id}', [UserAnswerController::class, 'destroy']);
+    });
+
+    Route::prefix('user_expert_requests')->group(function () {
+        Route::get('/{id?}', [UserExpertRequestController::class, 'show']);
     });
 
 });
