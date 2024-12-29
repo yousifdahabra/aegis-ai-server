@@ -24,7 +24,11 @@ class UserExpertRequestController extends Controller{
             ], 422);
         }
 
-
+        return response()->json([
+            'status' => true,
+            'message' => 'Get User Expert Request successfully',
+            'data' => $id == 0 ? QuestionResource::collection($user_expert_request):new QuestionResource($user_expert_request),
+        ], 200);
     }
 
 }
