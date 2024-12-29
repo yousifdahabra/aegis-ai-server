@@ -29,7 +29,7 @@ class UserAnswerController extends Controller{
         return response()->json([
             'status' => true,
             'message' => 'Get User Answer successfully',
-            'data' => UserAnswerResource::collection($user_answers_service),
+            'data' => $id == 0 ? UserAnswerResource::collection($user_answers_service):new UserAnswerResource($user_answers_service),
         ], 200);
     }
 
