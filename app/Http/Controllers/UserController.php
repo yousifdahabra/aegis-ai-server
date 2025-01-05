@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\auth\RegisterUserRequest;
+use App\Http\Requests\Auth\RegisterUserRequest;
 use App\Http\Requests\Auth\UpdateUserRequest;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
