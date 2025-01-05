@@ -134,13 +134,21 @@ class UserController extends Controller
             $expiry_time = Carbon::createFromTimestamp($payload->get('exp'));
 
             if ($expiry_time->isPast()) {
-                $new_token = JWTAuth::refresh($token);
+                try {
+                    $new_token = JWTAuth::refresh($token);
 
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Token expired. Token refreshed successfully.',
-                    'token' => $new_token,
-                ], 200);
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Token expired. Token refreshed successfully.',
+                        'token' => $new_token,
+                    ], 200);
+                } catch (JWTException $e) {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Unable to refresh token.',
+                    ], 401);
+                }
+
              }
 
             return response()->json([
