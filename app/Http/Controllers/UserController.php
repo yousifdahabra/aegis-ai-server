@@ -15,13 +15,11 @@ class UserController extends Controller
 
     protected $user_service;
 
-    function __construct(UserService $user_service)
-    {
+    function __construct(UserService $user_service){
         $this->user_service = $user_service;
     }
 
-    function register(RegisterUserRequest $request)
-    {
+    function register(RegisterUserRequest $request){
         $data =  $request->validated();
 
         $user = $this->user_service->register($data);
@@ -35,8 +33,7 @@ class UserController extends Controller
             "message" => 'User created successfully',
         ], 201);
     }
-    public function login(LoginRequest $request)
-    {
+    public function login(LoginRequest $request){
         $credentials = $request->validated();
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
@@ -63,8 +60,7 @@ class UserController extends Controller
         }
     }
 
-    public function show($id = 0)
-    {
+    public function show($id = 0){
         $user = $this->user_service->get_users($id);
         if ($user) {
             return response()->json([
@@ -80,8 +76,7 @@ class UserController extends Controller
         ], 422);
     }
 
-    public function update(UpdateUserRequest $request, $id)
-    {
+    public function update(UpdateUserRequest $request, $id){
         if (empty($id) || !is_numeric($id)) {
             return response()->json([
                 'status' => false,
@@ -104,8 +99,7 @@ class UserController extends Controller
             'data' => $user
         ], 200);
     }
-    public function destroy($id)
-    {
+    public function destroy($id){
         if (empty($id) || !is_numeric($id)) {
             return response()->json([
                 'status' => false,
@@ -126,6 +120,7 @@ class UserController extends Controller
             'data' => $user
         ], 200);
     }
+
     public function check_token_expiry(){
         try {
             $token = JWTAuth::getToken();
@@ -136,25 +131,17 @@ class UserController extends Controller
 
             $payload = JWTAuth::getPayload($token);
 
-            $expiryTime = Carbon::createFromTimestamp($payload->get('exp'));
+            $expiry_time = Carbon::createFromTimestamp($payload->get('exp'));
 
-            if ($expiryTime->isPast()) {
-                try {
-                    $newToken = JWTAuth::refresh($token);
+            if ($expiry_time->isPast()) {
+                $new_token = JWTAuth::refresh($token);
 
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Token expired. Token refreshed successfully.',
-                        'token' => $newToken,
-                    ], 200);
-
-                } catch (JWTException $e) {
-                    return response()->json([
-                        'status' => false,
-                        'message' => 'Unable to refresh token.',
-                    ], 401);
-                }
-            }
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Token expired. Token refreshed successfully.',
+                    'token' => $new_token,
+                ], 200);
+             }
 
             return response()->json([
                 'status' => true,
