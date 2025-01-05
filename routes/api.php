@@ -18,6 +18,7 @@ use App\Http\Middleware\ExpertMiddleware;
 Route::post("/expert_register", [ExpertController::class, "register"]);
 Route::post("/register", [UserController::class, "register"]);
 Route::post("/login", [UserController::class, "login"]);
+Route::post("/check-token-expiry", [UserController::class, "check_token_expiry"]);
 
 Route::middleware([ExpertMiddleware::class])->group(function () {
     Route::middleware([AdminMiddleware::class])->group(function () {
