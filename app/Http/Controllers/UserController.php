@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterUserRequest;
 use App\Http\Requests\Auth\UpdateUserRequest;
 use Illuminate\Http\Request;
@@ -33,11 +34,14 @@ class UserController extends Controller
         ], 201);
 
     }
-    public function login(Request $request){
-        $credentials = $request->only('email', 'password');
+    public function login(LoginRequest $request){
+        $credentials = $request->validated();
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'Invalid credentials'], 401);
+                return response()->json([
+                    'status' => false,
+                    "message" => 'Invalid credentials',
+                ], 401);
             }
 
             $user = auth()->user();
@@ -46,11 +50,15 @@ class UserController extends Controller
                 'status' => true,
                 "user" => $user,
                 "token" => $token,
-                "message" => 'login succ',
+                "message" => 'Login successfully',
             ], 201);
 
         } catch (JWTException $e) {
-            return response()->json(['error' => 'Could not create token'], 500);
+
+            return response()->json([
+                'status' => false,
+                "message" => 'Could not create token',
+            ], 500);
         }
     }
 
