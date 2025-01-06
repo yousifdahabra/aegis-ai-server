@@ -101,3 +101,29 @@ Route::middleware([ExpertMiddleware::class])->group(function () {
     });
 });
 
+Route::middleware([JwtMiddleware::class])->group(function () {
+    Route::prefix('user_expert_requests')->group(function () {
+        Route::get('/{id?}', [UserExpertRequestController::class, 'show']);
+        Route::post('/', [UserExpertRequestController::class, 'store']);
+    });
+    Route::prefix('user_answers')->group(function () {
+        Route::get('/{id?}', [UserAnswerController::class, 'show']);
+        Route::post('/', [UserAnswerController::class, 'store']);
+    });
+    Route::prefix('options')->group(function () {
+        Route::get('/{questions_id}/{id?}', [OptionController::class, 'show']);
+        Route::post('/', [OptionController::class, 'store']);
+    });
+    Route::prefix('questions')->group(function () {
+        Route::get('/{id?}', [QuestionController::class, 'show']);
+        Route::post('/', [QuestionController::class, 'store']);
+    });
+    Route::prefix('tests')->group(function () {
+        Route::get('/{id?}', [TestController::class, 'show']);
+        Route::post('/', [TestController::class, 'store']);
+    });
+    Route::prefix('users')->group(function () {
+        Route::get('/{id?}', [UserController::class, 'show']);
+        Route::put('/{id}', [UserController::class, 'update']);
+    });
+});
