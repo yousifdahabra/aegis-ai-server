@@ -12,6 +12,7 @@ class Test extends Model{
         'expert_id',
         'test_state_id',
         'title',
+        'security_grade',
     ];
 
     public function user(): BelongsTo

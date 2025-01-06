@@ -5,15 +5,18 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TestListResource extends JsonResource
-{
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
+class TestListResource extends JsonResource{
+
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
-    }
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'security' => $this->security_grade,
+            'user_name' => $this->user->name,
+            'test_state' => $this->test_state->title,
+            'questions_count' => $this->questions->count(),
+        ];
+        }
+
 }
