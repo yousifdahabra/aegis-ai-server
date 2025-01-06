@@ -20,7 +20,7 @@ class UserExpertRequestService{
     {
         $user_expert_request = new UserExpertRequest;
         $user_expert_request->user_id = $data['user_id'];
-        $user_expert_request->expert_id = $data['expert_id'];
+        $user_expert_request->expert_id = 0;
         $user_expert_request->about_user = $data['about_user'];
         $user_expert_request->user_note = $data['user_note'];
         $user_expert_request->links = $data['links'];
