@@ -66,4 +66,38 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     });
 });
 
+Route::middleware([ExpertMiddleware::class])->group(function () {
+    Route::prefix('tests')->group(function () {
+        Route::get('/{id?}', [TestController::class, 'show']);
+        Route::post('/', [TestController::class, 'store']);
+        Route::put('/{id}', [TestController::class, 'update']);
+        Route::delete('/{id}', [TestController::class, 'destroy']);
+    });
+    Route::prefix('questions')->group(function () {
+        Route::get('/{id?}', [QuestionController::class, 'show']);
+        Route::post('/', [QuestionController::class, 'store']);
+        Route::put('/{id}', [QuestionController::class, 'update']);
+        Route::delete('/{id}', [QuestionController::class, 'destroy']);
+    });
+    Route::prefix('options')->group(function () {
+        Route::get('/{questions_id}/{id?}', [OptionController::class, 'show']);
+        Route::post('/', [OptionController::class, 'store']);
+        Route::put('/{questions_id}/{id}', [OptionController::class, 'update']);
+        Route::delete('/{questions_id}/{id}', [OptionController::class, 'destroy']);
+    });
+
+    Route::prefix('user_answers')->group(function () {
+        Route::get('/{id?}', [UserAnswerController::class, 'show']);
+        Route::post('/', [UserAnswerController::class, 'store']);
+        Route::put('/{id}', [UserAnswerController::class, 'update']);
+        Route::delete('/{id}', [UserAnswerController::class, 'destroy']);
+    });
+
+    Route::prefix('user_expert_requests')->group(function () {
+        Route::get('/{id?}', [UserExpertRequestController::class, 'show']);
+        Route::post('/', [UserExpertRequestController::class, 'store']);
+        Route::put('/{id}', [UserExpertRequestController::class, 'update']);
+        Route::delete('/{id}', [UserExpertRequestController::class, 'destroy']);
+    });
+});
 
