@@ -19,11 +19,6 @@ class UserExpertRequestResource extends JsonResource{
                 'name' => $this->user->name,
                 'email' => $this->user->email,
             ],
-            'expert' => [
-                'id' => $this->expert->id,
-                'name' => $this->expert->name,
-                'email' => $this->expert->email,
-            ],
         ];
     }
 }

@@ -28,7 +28,7 @@ class UserController extends Controller
 
         return response()->json([
             'status' => true,
-            "data" => $user,
+            "user" => $user,
             "token" => $token,
             "message" => 'User created successfully',
         ], 201);
