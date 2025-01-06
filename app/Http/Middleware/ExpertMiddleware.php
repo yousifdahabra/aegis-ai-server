@@ -18,7 +18,7 @@ class ExpertMiddleware{
                     'message' => 'User not found',
                 ], 401);
             }
-            if ($user['user_role_id'] == 3) {
+            if ($user['user_role_id'] != 2) {
                 return response()->json([
                     'status' => false,
                     'message' => 'You are not authorized',
