@@ -16,7 +16,7 @@ class UpdateUserExpertRequestsRRequest extends BaseRequest{
         return [
             'about_user' => 'required|string',
             'user_note' => 'required|string',
-            'links' => 'required|string',
+            'links' => 'string',
         ];
     }
 
@@ -27,7 +27,6 @@ class UpdateUserExpertRequestsRRequest extends BaseRequest{
             'about_user.string' => 'The about user must be a string.',
             'user_note.required' => 'The user note field is required.',
             'user_note.string' => 'The user note must be a string.',
-            'links.required' => 'The links field is required.',
             'links.string' => 'The links must be a string.',
         ];
     }

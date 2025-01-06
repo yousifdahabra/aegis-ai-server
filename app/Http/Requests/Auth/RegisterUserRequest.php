@@ -15,7 +15,7 @@ class RegisterUserRequest extends BaseRequest{
     {
         return [
             'name' => 'required|string|max:255',
-            'phone_number' => 'required|string|max:255',
+            'phone_number' => 'string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
         ];
@@ -25,7 +25,6 @@ class RegisterUserRequest extends BaseRequest{
         return [
             'name.required' => 'The name field is required.',
             'name.max' => 'The name field has a maximum 255 character limit.',
-            'phone_number.required' => 'The phone number field is required.',
             'phone_number.max' => 'The phone_number field has a maximum 255 character limit.',
             'email.required' => 'The email field is required.',
             'email.email' => 'Please provide a valid email address.',
