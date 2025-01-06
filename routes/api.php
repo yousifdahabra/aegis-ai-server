@@ -33,11 +33,11 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () 
     });
 
     Route::prefix('tests')->group(function () {
+        Route::get('/get-list', [TestController::class, 'get_tests_list']);
         Route::get('/{id?}', [TestController::class, 'show']);
         Route::post('/', [TestController::class, 'store']);
         Route::put('/{id}', [TestController::class, 'update']);
         Route::delete('/{id}', [TestController::class, 'destroy']);
-        Route::get('/get-list', [TestController::class, 'get_tests_list']);
     });
     Route::prefix('questions')->group(function () {
         Route::get('/{id?}', [QuestionController::class, 'show']);
@@ -69,11 +69,11 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () 
 
 Route::middleware([ExpertMiddleware::class])->prefix('expert')->group(function () {
     Route::prefix('tests')->group(function () {
+        Route::get('/get-list', [TestController::class, 'get_tests_list']);
         Route::get('/{id?}', [TestController::class, 'show']);
         Route::post('/', [TestController::class, 'store']);
         Route::put('/{id}', [TestController::class, 'update']);
         Route::delete('/{id}', [TestController::class, 'destroy']);
-        Route::get('/get-list', [TestController::class, 'get_tests_list']);
     });
     Route::prefix('questions')->group(function () {
         Route::get('/{id?}', [QuestionController::class, 'show']);
@@ -121,10 +121,9 @@ Route::middleware([JwtMiddleware::class])->group(function () {
         Route::post('/', [QuestionController::class, 'store']);
     });
     Route::prefix('tests')->group(function () {
+        Route::get('/get-list', [TestController::class, 'get_tests_list']);
         Route::get('/{id?}', [TestController::class, 'show']);
         Route::post('/', [TestController::class, 'store']);
-        Route::get('/get-list', [TestController::class, 'get_tests_list']);
-
     });
     Route::prefix('users')->group(function () {
         Route::get('/{id?}', [UserController::class, 'show']);
