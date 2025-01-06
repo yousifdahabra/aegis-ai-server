@@ -6,10 +6,9 @@ use Closure;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class ExpertMiddleware
-{
-    public function handle($request, Closure $next)
-    {
+class ExpertMiddleware{
+
+    public function handle($request, Closure $next){
 
         try {
             $user = JWTAuth::parseToken()->authenticate();

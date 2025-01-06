@@ -8,10 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class AuthMiddleware
-{
-    public function handle($request, Closure $next)
-    {
+class AuthMiddleware{
+
+    public function handle($request, Closure $next){
+
         try {
             $user = JWTAuth::parseToken()->authenticate();
         } catch (JWTException $e) {
