@@ -20,7 +20,7 @@ Route::post("/register", [UserController::class, "register"]);
 Route::post("/login", [UserController::class, "login"]);
 Route::post("/check-token-expiry", [UserController::class, "check_token_expiry"]);
 
-Route::middleware([AdminMiddleware::class])->group(function () {
+Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () {
     Route::prefix('users')->group(function () {
         Route::get('/{id?}', [UserController::class, 'show']);
         Route::put('/{id}', [UserController::class, 'update']);
@@ -66,7 +66,7 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     });
 });
 
-Route::middleware([ExpertMiddleware::class])->group(function () {
+Route::middleware([ExpertMiddleware::class])->prefix('expert')->group(function () {
     Route::prefix('tests')->group(function () {
         Route::get('/{id?}', [TestController::class, 'show']);
         Route::post('/', [TestController::class, 'store']);
