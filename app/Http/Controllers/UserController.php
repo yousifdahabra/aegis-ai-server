@@ -10,8 +10,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Services\UserService;
 use Carbon\Carbon;
 
-class UserController extends Controller
-{
+class UserController extends Controller{
 
     protected $user_service;
 

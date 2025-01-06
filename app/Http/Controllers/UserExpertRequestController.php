@@ -8,6 +8,7 @@ use App\Http\Resources\UserExpertRequestResource;
 use App\Services\UserExpertRequestService;
 
 class UserExpertRequestController extends Controller{
+
     protected $user_expert_request;
 
     function __construct(UserExpertRequestService $user_expert_request){

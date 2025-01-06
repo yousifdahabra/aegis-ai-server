@@ -10,8 +10,8 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Services\UserService;
 use App\Services\ExpertService;
 
-class ExpertController extends Controller
-{
+class ExpertController extends Controller{
+
     protected $user_service;
     protected $expert_service;
 

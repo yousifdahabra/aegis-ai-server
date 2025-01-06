@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Test\AddTestRequest;
 use App\Http\Requests\Test\UpdateTestRequest;
+use App\Http\Resources\TestListResource;
 use App\Http\Resources\TestResource;
 use App\Services\TestService;
 
-class TestController extends Controller
-{
+class TestController extends Controller{
+
     protected $test_service;
 
     function __construct(TestService $test_service){
@@ -29,6 +30,22 @@ class TestController extends Controller
             'status' => true,
             'message' => 'Get Tests successfully',
             'data' => TestResource::collection($tests),
+        ], 200);
+    }
+    public function get_tests_list(){
+        $tests = $this->test_service->get_tests_list();
+
+        if(!$tests){
+            return response()->json([
+                'status' => false,
+                'message' => 'Test error',
+            ], 422);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Get Tests successfully',
+            'data' => TestListResource::collection($tests),
         ], 200);
     }
 
