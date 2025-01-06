@@ -16,6 +16,9 @@ class TestService{
         return Test::all();
     }
 
+    public function get_tests_list(){
+        return Test::with(['user', 'test_state', 'questions'])->get();
+    }
 
     public function store(array $data): Test
     {
