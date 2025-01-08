@@ -12,4 +12,11 @@ class ChatGPTController extends Controller{
         $this->chatgpt_service = $chatgpt_service;
     }
 
+    public function test_chatgpt(): string
+    {
+        $message = "Explain cybersecurity in simple terms.";
+        $response = $this->chatgpt_service->ask_chatgpt($message);
+
+        return response()->json(['message' => $response]);
+    }
 }
