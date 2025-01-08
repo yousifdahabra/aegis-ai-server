@@ -14,6 +14,14 @@ class ChatGPTService{
 
     public function ask_chatgpt(string $message, array $context = []): string
     {
-        return "";
+        $response = $this->client->chat()->create([
+            'model' => 'gpt-3.5-turbo',//gpt-4
+            'messages' => array_merge(
+                $context,
+                [['role' => 'user', 'content' => $message]]
+            ),
+        ]);
+
+        return $response['choices'][0]['message']['content'] ?? '';
     }
 }
