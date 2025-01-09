@@ -46,7 +46,13 @@ class ChatGPTService{
               - 1: Input (open-ended).
             - Generate meaningful, scenario-based questions tailored to user details (age, role, experience).
             - Highlight common user mistakes and cybersecurity misconceptions.
-            }.
+            - For finished tests, analyze answers, summarize strengths/weaknesses, and provide actionable feedback in JSON:
+              {
+                "result": {
+                  "analysis": "<feedback_summary>",
+                  "score": "<user_score>"
+                }
+              }.
               '
         ];
     }
