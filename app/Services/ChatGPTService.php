@@ -60,15 +60,17 @@ class ChatGPTService{
 
     public function generate_question(string $user_data, array $previous_questions = []): string
     {
-        $context = [$this->get_system_message()];
+        try {
+            $context = [$this->get_system_message()];
 
-        foreach ($previous_questions as $question) {
-            $context[] = ['role' => 'assistant', 'content' => $question];
+            foreach ($previous_questions as $question) {
+                $context[] = ['role' => 'assistant', 'content' => $question];
+            }
+
+            return $this->ask_chatgpt("Generate the next question for: {$user_data}", $context);
+        } catch (Exception $e) {
+            return $this->handle_error($e);
         }
-
-        $response = $this->ask_chatgpt("Generate the next question for: {$user_data}", $context);
-
-        return $response;
     }
 
     protected function handle_error(Exception $e): array
