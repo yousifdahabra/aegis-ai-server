@@ -28,7 +28,17 @@ class ChatGPTService{
     protected function get_system_message(): array{
         return [
             'role' => 'system',
-            'content' => 'You are a cybersecurity expert and test engineer. Your role is to create adaptive questions and provide feedback for cybersecurity assessments.'
+            'content' => 'You are a cybersecurity expert and test engineer. Your role is to create adaptive questions and provide feedback for cybersecurity assessments.
+
+            - Respond exclusively in JSON format:
+              {
+                "type_question": <question_type_id>,
+                "id": <question_id>,
+                "question": "<question_title>",
+                "options": [<option_1>, <option_2>, ...] (if applicable),
+                "user_answer": [<selected_option_1>, <selected_option_2>, ...] (if applicable)
+              }
+            '
         ];
     }
 
