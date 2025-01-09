@@ -45,16 +45,24 @@ class ChatGPTController extends Controller{
     }
 
     public function generate_feedback(Request $request){
+        $user = auth()->user();
 
-        $user_data = $request->input('user_data', '');
+        $user_data = "{$user->name}, age " . (date('Y') - $user->birth_year) . ", role: " . ($user->is_admin() ? 'Admin' : ($user->is_expert() ? 'Expert' : 'User'));
         $questions_with_answers = $request->input('questions_with_answers', []);
 
         $response = $this->chatgpt_service->generate_feedback($user_data, $questions_with_answers);
 
         if (!$response['status']) {
-            return response()->json($response, 422);
+            return response()->json([
+                'status' => false,
+                'message' => 'Feedback Error',
+            ], 422);
         }
 
-        return response()->json($response);
+        return response()->json([
+            'status' => true,
+            'data' => $response['data'],
+            'message' => 'Feedback generated successfully.',
+        ], 201);
     }
 }
