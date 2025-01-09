@@ -18,6 +18,13 @@ class ChatGPTController extends Controller{
         $user_data = $request->input('user_data', '');
         $previous_questions = $request->input('previous_questions', []);
 
+        $response = $this->chatgpt_service->generate_question($user_data, $previous_questions);
+
+        if (!$response['status']) {
+            return response()->json($response, 422);
+        }
+
+        return response()->json($response);
     }
 
 
