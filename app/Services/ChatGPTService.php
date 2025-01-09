@@ -42,7 +42,9 @@ class ChatGPTService{
               - Example input for previous questions:
                 {"id": 101, "user_answer": ["Option 1"]}
               - Generate the next question or feedback based on these references.
-            '
+            - Question Types:
+              - 1: Input (open-ended).
+              '
         ];
     }
 
