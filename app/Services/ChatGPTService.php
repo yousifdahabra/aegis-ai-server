@@ -38,6 +38,10 @@ class ChatGPTService{
                 "options": [<option_1>, <option_2>, ...] (if applicable),
                 "user_answer": [<selected_option_1>, <selected_option_2>, ...] (if applicable)
               }
+            - Use question IDs and user answers for context:
+              - Example input for previous questions:
+                {"id": 101, "user_answer": ["Option 1"]}
+              - Generate the next question or feedback based on these references.
             '
         ];
     }
