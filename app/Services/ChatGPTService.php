@@ -121,6 +121,10 @@ class ChatGPTService{
             }
         }
 
+        if (isset($data['user_answer']) && !is_array($data['user_answer'])) {
+            throw new Exception("user_answer must be an array if provided.");
+        }
+
         return true;
     }
 
