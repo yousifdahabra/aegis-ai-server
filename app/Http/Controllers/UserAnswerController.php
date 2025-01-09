@@ -95,5 +95,13 @@ class UserAnswerController extends Controller{
             'message' => 'User Answer deleted successfully',
         ], 200);
     }
+    public function store_with_gpt(AddUserAnswersRequest $request){
+        $data = $request->validated();
+        $user = auth()->user();
+        $test_id = $data['test_id'];
+
+    }
 
 }
+
+
