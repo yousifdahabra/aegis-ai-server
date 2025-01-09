@@ -70,4 +70,21 @@ class ChatGPTService{
 
         return $response;
     }
+
+    protected function handle_error(Exception $e): array
+    {
+        $code = 500;
+        $message = 'An unexpected error occurred.';
+
+        if ($e->getMessage()) {
+            $message = $e->getMessage();
+        }
+
+        return [
+            'status' => false,
+            'message' => $message,
+            'code' => $code,
+        ];
+    }
+
 }
