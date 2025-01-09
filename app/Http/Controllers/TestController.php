@@ -57,11 +57,34 @@ class TestController extends Controller{
     function store(AddTestRequest $request){
         $data =  $request->validated();
         $test = $this->test_service->store($data);
+
+        $user = auth()->user();
+        $user_data = "{$user->name}, age " . (date('Y') - $user->birth_year) . ", role: " . ($user->is_admin() ? 'Admin' : ($user->is_expert() ? 'Expert' : 'User'));
+        $response = $this->chatgpt_service->generate_question($user_data);
+
+        if (!$response['status']) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Failed to generate the first question',
+            ], 422);
+        }
+
+        $question_data = $response['data'];
+        $question_data['test_id'] = $test->id;
+        $question_data['previous_question_id'] = null;
+
+        $question = $this->question_service->store($question_data);
+
         return response()->json([
             'status' => true,
-            "data" => new TestResource($test),
-            "message" => 'Test created successfully',
+            'data' => [
+                'test' => new TestResource($test),
+                'first_question' => $question,
+            ],
+            'message' => 'Test created successfully with the first question generated.',
         ], 201);
+
+
     }
 
     function update(UpdateTestRequest $request,$id){
