@@ -83,6 +83,16 @@ class ChatGPTService{
         }
     }
 
+    public function generate_feedback(string $user_data, array $questions_with_answers): array
+    {
+        $context = [$this->get_system_message()];
+
+        foreach ($questions_with_answers as $entry) {
+            $context[] = ['role' => 'assistant', 'content' => json_encode($entry)];
+        }
+
+        return $this->ask_chatgpt("Analyze the test results for: {$user_data}", $context);
+    }
     protected function handle_error(Exception $e): array
     {
         $message = 'An unexpected error occurred.';
