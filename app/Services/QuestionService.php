@@ -37,13 +37,19 @@ class QuestionService{
         $question->gpt_question_id = $data['gpt_question_id'] ?? 0;
         $question->save();
 
+        $options = [];
         if (!empty($data['options']) && is_array($data['options'])) {
             foreach ($data['options'] as $option_title) {
-                $this->options_service->store([
+                $option = $this->options_service->store([
                     'title' => $option_title,
                     'question_id' => $question->id,
                 ]);
+                $options[] = $option;
             }
+        }
+
+        if (in_array($question->question_type_id, [2, 3])) {
+            $question->options = $options;
         }
 
         return $question;
