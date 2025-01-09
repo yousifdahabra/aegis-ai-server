@@ -140,7 +140,20 @@ class UserAnswerController extends Controller{
             ], 422);
         }
 
-     }
+        $question_data = $response['data'];
+        $question_data['test_id'] = $test_id;
+        $question_data['previous_question_id'] = $data['question_id'];
+        $this->questions_service->store($question_data);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User Answer saved and next question generated',
+            'data' => [
+                'user_answer' => new UserAnswerResource($user_answer),
+                'question' => $response['data'],
+            ],
+        ], 201);
+    }
 
 }
 
