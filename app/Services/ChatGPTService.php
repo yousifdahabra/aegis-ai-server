@@ -12,17 +12,24 @@ class ChatGPTService{
         $this->client = OpenAI::client(config('services.openai.key'));
     }
 
-    public function ask_chatgpt(string $message, array $context = []): string
+    public function ask_chatgpt(string $message, array $context = []): array
     {
-        $response = $this->client->chat()->create([
-            'model' => 'gpt-3.5-turbo',//gpt-4
-            'messages' => array_merge(
-                $context,
-                [['role' => 'user', 'content' => $message]]
-            ),
-        ]);
+        try {
+            $response = $this->client->chat()->create([
+                'model' => 'gpt-3.5-turbo', //or gpt-4
+                'messages' => array_merge(
+                    $context,
+                    [['role' => 'user', 'content' => $message]]
+                ),
+            ]);
 
-        return $response['choices'][0]['message']['content'] ?? '';
+            return [
+                'status' => true,
+                'data' => $response['choices'][0]['message']['content'] ?? ''
+            ];
+        } catch (Exception $e) {
+            return $this->handle_error($e);
+        }
     }
 
     protected function get_system_message(): array{
@@ -58,7 +65,7 @@ class ChatGPTService{
     }
 
 
-    public function generate_question(string $user_data, array $previous_questions = []): string
+    public function generate_question(string $user_data, array $previous_questions = []): array
     {
         try {
             $context = [$this->get_system_message()];
@@ -75,7 +82,6 @@ class ChatGPTService{
 
     protected function handle_error(Exception $e): array
     {
-        $code = 500;
         $message = 'An unexpected error occurred.';
 
         if ($e->getMessage()) {
@@ -85,7 +91,6 @@ class ChatGPTService{
         return [
             'status' => false,
             'message' => $message,
-            'code' => $code,
         ];
     }
 
