@@ -25,7 +25,7 @@ class TestService{
         $test = new Test;
         $test->title = $data['title'];
         $test->user_id = $data['user_id'];
-        $test->expert_id = $data['expert_id'];
+        $test->expert_id = $data['expert_id'] ?? 0;
         $test->test_state_id = $data['test_state_id'];
         $test->save();
         return $test;

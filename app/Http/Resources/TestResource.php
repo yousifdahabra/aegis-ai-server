@@ -17,15 +17,20 @@ class TestResource extends JsonResource{
                 'name' => $this->user->name,
                 'email' => $this->user->email,
             ],
-            'expert' => [
+            'expert' => $this->expert ? [
                 'id' => $this->expert->id,
                 'name' => $this->expert->name,
                 'email' => $this->expert->email,
+            ] : [
+                'id' => 0,
+                'name' => 'AegisAi',
+                'email' => 'AegisAi@AegisAi.com',
             ],
             'test_state' => [
                 'id' => $this->test_state->id,
                 'title' => $this->test_state->title,
             ],
         ];
+
     }
 }
