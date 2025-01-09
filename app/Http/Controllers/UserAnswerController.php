@@ -130,7 +130,17 @@ class UserAnswerController extends Controller{
             ], 200);
         }
 
-    }
+
+        $response = $this->chatgpt_service->generate_question($user_data, $previous_questions_with_answers);
+
+        if (!$response['status']) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Failed to generate the next question',
+            ], 422);
+        }
+
+     }
 
 }
 
