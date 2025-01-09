@@ -156,6 +156,10 @@ class ChatGPTService{
             }
         }
 
+        if (!isset($data['result']['analysis']) || !is_string($data['result']['analysis'])) {
+            throw new Exception("Invalid or missing analysis in feedback result.");
+        }
+
         return true;
     }
 
