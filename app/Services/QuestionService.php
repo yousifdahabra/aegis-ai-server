@@ -115,6 +115,11 @@ class QuestionService{
                 'id' => $question->id,
                 'user_answer' => $question->user_answer?->option_answer ?? [],
             ];
+
+            if (in_array($question->question_type_id, [2, 3])) {
+                $entry['options'] = $question->options->pluck('title')->toArray();
+            }
+
             $formatted_questions[] = $entry;
         }
 
