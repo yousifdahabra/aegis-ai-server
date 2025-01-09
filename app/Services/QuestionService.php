@@ -21,10 +21,12 @@ class QuestionService{
     public function store(array $data): Question
     {
         $question = new Question;
-        $question->test_id = $data['test_id'];
-        $question->question_type_id = $data['question_type_id'];
+        $question->test_id = $data['test_id'] ?? 0;
+        $question->question_type_id = $data['type_question'];
         $question->previous_question_id = $data['previous_question_id'] ?? 0;
-        $question->title = $data['title'];
+        $question->title = $data['question'];
+        $question->question_provider_id = $data['question_provider_id'] ?? Question::GPT;
+        $question->use_question_id = $data['use_question_id'] ?? 0;
         $question->save();
 
         foreach ($data['options'] as $option_data) {
