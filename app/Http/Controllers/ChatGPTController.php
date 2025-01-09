@@ -27,5 +27,10 @@ class ChatGPTController extends Controller{
         return response()->json($response);
     }
 
+    public function generate_feedback(Request $request){
 
+        $user_data = $request->input('user_data', '');
+        $questions_with_answers = $request->input('questions_with_answers', []);
+
+    }
 }
