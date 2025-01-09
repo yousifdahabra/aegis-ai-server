@@ -91,8 +91,14 @@ class ChatGPTService{
             foreach ($questions_with_answers as $entry) {
                 $context[] = ['role' => 'assistant', 'content' => json_encode($entry)];
             }
-
-            return $this->ask_chatgpt("Analyze the test results for: {$user_data}", $context);
+            $prompt = "The test is finished for the user: {$user_data}. Analyze the user's answers and provide feedback in the following JSON format:
+                {
+                    \"result\": {
+                        \"analysis\": \"<feedback_summary>\",
+                        \"score\": \"<user_score>\"
+                    }
+                }";
+            return $this->ask_chatgpt($prompt, $context);
         } catch (Exception $e) {
             return $this->handle_error($e);
         }
