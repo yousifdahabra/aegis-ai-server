@@ -103,12 +103,14 @@ class ChatGPTService{
             return $this->handle_error($e);
         }
     }
-    protected function handle_error(Exception $e): array
+    protected function handle_error($error): array
     {
         $message = 'An unexpected error occurred.';
 
-        if ($e->getMessage()) {
-            $message = $e->getMessage();
+        if ($error instanceof Exception) {
+            $message = $error->getMessage() ?: $message;
+        } elseif (is_string($error)) {
+            $message = $error;
         }
 
         return [
