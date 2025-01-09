@@ -110,6 +110,14 @@ class QuestionService{
         $questions = Question::with(['options', 'user_answer'])->where('test_id', $test_id)->get();
 
         $formatted_questions = [];
-         return $formatted_questions;
+        foreach ($questions as $question) {
+            $entry = [
+                'id' => $question->id,
+                'user_answer' => $question->user_answer?->option_answer ?? [],
+            ];
+            $formatted_questions[] = $entry;
+        }
+
+        return $formatted_questions;
     }
 }
