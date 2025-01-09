@@ -36,7 +36,14 @@ class QuestionService{
         $question->use_question_id = $data['use_question_id'] ?? 0;
         $question->save();
 
-
+        if (!empty($data['options']) && is_array($data['options'])) {
+            foreach ($data['options'] as $option_title) {
+                $this->options_service->store([
+                    'title' => $option_title,
+                    'question_id' => $question->id,
+                ]);
+            }
+        }
 
         return $question;
     }
