@@ -15,6 +15,7 @@ class Question extends Model{
         'title',
         'question_provider_id',
         'use_question_id',
+        'gpt_question_id',
     ];
 
     public const GPT = 1;
