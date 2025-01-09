@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\OptionController;
@@ -13,6 +14,7 @@ use App\Http\Middleware\JwtMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ExpertMiddleware;
 
+Route::get('/test-chatgpt', [ChatGPTController::class, 'test_chatgpt']);
 
 
 Route::post("/expert_register", [ExpertController::class, "register"]);
