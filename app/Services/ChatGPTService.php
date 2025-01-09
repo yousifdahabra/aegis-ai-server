@@ -114,6 +114,13 @@ class ChatGPTService{
             }
         }
 
+        $requires_options = [2, 3];
+        if (in_array($data['type_question'], $requires_options)) {
+            if (!isset($data['options']) || !is_array($data['options']) || empty($data['options'])) {
+                throw new Exception("Options are required and must be a non-empty array for type_question: {$data['type_question']}");
+            }
+        }
+
         return true;
     }
 
