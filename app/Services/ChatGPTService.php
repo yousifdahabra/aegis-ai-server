@@ -38,7 +38,7 @@ class ChatGPTService{
                     throw new Exception("Invalid JSON response.");
                 }
 
-                $this->is_valid_json_structure($decoded);
+                $question ? $this->is_valid_json_structure($decoded) : $this->is_valid_feedback_structure($decoded);
 
                 return [
                     'status' => true,
