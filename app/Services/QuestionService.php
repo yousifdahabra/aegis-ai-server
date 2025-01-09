@@ -7,6 +7,13 @@ use App\Models\Option;
 
 class QuestionService{
 
+    protected $options_service;
+
+    public function __construct(OptionsService $options_service){
+        $this->options_service = $options_service;
+    }
+
+
     public function get_questions($id = 0){
         if($id > 0){
             $question = Question::with('options')->find($id);
@@ -29,12 +36,7 @@ class QuestionService{
         $question->use_question_id = $data['use_question_id'] ?? 0;
         $question->save();
 
-        foreach ($data['options'] as $option_data) {
-            $option = new Option;
-            $option->question_id = $question->id;
-            $option->title = $option_data['title'];
-            $option->save();
-        }
+
 
         return $question;
     }
