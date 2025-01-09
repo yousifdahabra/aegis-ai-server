@@ -98,23 +98,30 @@ class UserAnswerController extends Controller{
     public function store_with_gpt(AddUserAnswersRequest $request){
         $data = $request->validated();
         $user = auth()->user();
-        $test_id = $data['test_id'];
+        $question_id = $data['question_id'];
+        $question_info = $this->questions_service->get_questions($question_id);
+        $test_id = $question_info['test_id'];//get_questions
 
-        $user_answer = $this->user_answers_service->store($data);
 
-        if (!$user_answer) {
-            return response()->json([
-                'status' => false,
-                'message' => 'User Answer creation failed',
-            ], 422);
-        }
+        // $user_answer = $this->user_answers_service->store($data);
 
-        $previous_questions_with_answers = $this->questions_service->get_previous_questions($test_id, $user->id);
+        // if (!$user_answer) {
+        //     return response()->json([
+        //         'status' => false,
+        //         'message' => 'User Answer creation failed',
+        //     ], 422);
+        // }
+
+        $previous_questions = $this->questions_service->get_previous_questions($test_id, $user->id);
+        $previous_questions_with_answers = array_map(function ($item) {
+            return json_encode($item);
+        }, $previous_questions);
+
         $user_data = "{$user->name}, age " . (date('Y') - $user->birth_year)  ;
-
+        $previous_questions_with_answers;
         if (count($previous_questions_with_answers) >= 3) {
 
-            $feedback_response = $this->chatgpt_service->generate_feedback($user_data, $previous_questions_with_answers);
+            return $feedback_response = $this->chatgpt_service->generate_feedback($user_data, $previous_questions_with_answers);
 
             if (!$feedback_response['status']) {
                 return response()->json([
@@ -129,7 +136,6 @@ class UserAnswerController extends Controller{
                 'data' => $feedback_response['data'],
             ], 200);
         }
-
 
         $response = $this->chatgpt_service->generate_question($user_data, $previous_questions_with_answers);
 
@@ -148,10 +154,7 @@ class UserAnswerController extends Controller{
         return response()->json([
             'status' => true,
             'message' => 'User Answer saved and next question generated',
-            'data' => [
-                'user_answer' => new UserAnswerResource($user_answer),
-                'question' => $response['data'],
-            ],
+            'data' => $response['data'],
         ], 201);
     }
 

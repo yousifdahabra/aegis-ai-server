@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Exception;
 use OpenAI;
 
 class ChatGPTService{
@@ -14,11 +15,10 @@ class ChatGPTService{
         $this->model = config('services.openai.model', 'gpt-3.5-turbo');
     }
 
-    public function ask_chatgpt(string $message, array $context = []): array
+    public function ask_chatgpt(string $message, array $context = [],$question = true)
     {
         $max_retries = 2;
         $attempt = 0;
-
         while ($attempt < $max_retries) {
             $attempt++;
 
@@ -108,7 +108,7 @@ class ChatGPTService{
             $context = [$this->get_system_message()];
 
             foreach ($questions_with_answers as $entry) {
-                $context[] = ['role' => 'assistant', 'content' => json_encode($entry)];
+                $context[] = ['role' => 'assistant', 'content' => $entry];
             }
             $prompt = "The test is finished for the user: {$user_data}. Analyze the user's answers and provide feedback in the following JSON format:
                 {
@@ -117,7 +117,7 @@ class ChatGPTService{
                         \"score\": \"<user_score>\"
                     }
                 }";
-            return $this->ask_chatgpt($prompt, $context);
+            return $this->ask_chatgpt($prompt, $context,false);
         } catch (Exception $e) {
             return $this->handle_error($e);
         }
@@ -142,6 +142,18 @@ class ChatGPTService{
 
         if (isset($data['user_answer']) && !is_array($data['user_answer'])) {
             throw new Exception("user_answer must be an array if provided.");
+        }
+
+        return true;
+    }
+    protected function is_valid_feedback_structure(array $data): bool
+    {
+        $required_keys = ['result'];
+
+        foreach ($required_keys as $key) {
+            if (!array_key_exists($key, $data)) {
+                throw new Exception("Missing required key: {$key}");
+            }
         }
 
         return true;

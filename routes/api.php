@@ -130,9 +130,13 @@ Route::middleware([JwtMiddleware::class])->group(function () {
         Route::get('/get-list', [TestController::class, 'get_tests_list']);
         Route::get('/{id?}', [TestController::class, 'show']);
         Route::post('/', [TestController::class, 'store']);
+        Route::post('/answer', [UserAnswerController::class, 'store_with_gpt']);
+
     });
     Route::prefix('users')->group(function () {
         Route::get('/{id?}', [UserController::class, 'show']);
         Route::put('/{id}', [UserController::class, 'update']);
     });
+
+
 });
