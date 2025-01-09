@@ -6,6 +6,8 @@ use App\Http\Requests\Test\AddTestRequest;
 use App\Http\Requests\Test\UpdateTestRequest;
 use App\Http\Resources\TestListResource;
 use App\Http\Resources\TestResource;
+use App\Services\ChatGPTService;
+use App\Services\QuestionService;
 use App\Services\TestService;
 
 class TestController extends Controller{
@@ -79,7 +81,7 @@ class TestController extends Controller{
             'status' => true,
             'data' => [
                 'test' => new TestResource($test),
-                'first_question' => $question,
+                'question' => $question,
             ],
             'message' => 'Test created successfully with the first question generated.',
         ], 201);

@@ -25,7 +25,6 @@ class ChatGPTService{
             try {
                 $response = $this->client->chat()->create([
                     'model' => $this->model,
-                    'timeout' => 10,
                     'messages' => array_merge(
                         $context,
                         [['role' => 'user', 'content' => $message]]
