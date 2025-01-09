@@ -160,6 +160,10 @@ class ChatGPTService{
             throw new Exception("Invalid or missing analysis in feedback result.");
         }
 
+        if (!isset($data['result']['score']) || !is_string($data['result']['score'])) {
+            throw new Exception("Invalid or missing score in feedback result.");
+        }
+
         return true;
     }
 
