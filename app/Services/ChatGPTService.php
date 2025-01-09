@@ -60,10 +60,7 @@ class ChatGPTService{
 
     public function generate_question(string $user_data, array $previous_questions = []): string
     {
-        $context = [
-            ['role' => 'system',
-            'content' => 'You are an assistant that generates questions for a cybersecurity test. Tailor the questions to the user\'s age and previous answers.'],
-        ];
+        $context = [$this->get_system_message()];
 
         foreach ($previous_questions as $question) {
             $context[] = ['role' => 'assistant', 'content' => $question];

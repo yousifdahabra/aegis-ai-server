@@ -15,6 +15,10 @@ class Question extends Model{
         'title',
     ];
 
+    public const GPT = 1;
+    public const EXPERT = 2;
+    public const SYSTEM = 3;
+
     public function options(){
         return $this->hasMany(Option::class);
     }
