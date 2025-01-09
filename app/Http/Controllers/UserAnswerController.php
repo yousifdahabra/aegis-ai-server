@@ -100,6 +100,15 @@ class UserAnswerController extends Controller{
         $user = auth()->user();
         $test_id = $data['test_id'];
 
+        $user_answer = $this->user_answers_service->store($data);
+
+        if (!$user_answer) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User Answer creation failed',
+            ], 422);
+        }
+
     }
 
 }
