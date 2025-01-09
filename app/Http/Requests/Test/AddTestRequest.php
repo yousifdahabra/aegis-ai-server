@@ -17,7 +17,7 @@ class AddTestRequest extends BaseRequest{
         return [
             'title' => 'required|string|max:255',
             'user_id' => 'required|numeric|exists:users,id',
-            'expert_id' => 'required|numeric|exists:users,id',
+            'expert_id' => 'numeric',
             'test_state_id' => 'required|numeric|exists:test_states,id',
         ];
     }
@@ -31,9 +31,7 @@ class AddTestRequest extends BaseRequest{
             'user_id.required' => 'The user ID is required.',
             'user_id.numeric' => 'The user ID must be a number.',
             'user_id.exists' => 'The selected user ID does not exist in the users table.',
-            'expert_id.required' => 'The expert ID is required.',
             'expert_id.numeric' => 'The expert ID must be a number.',
-            'expert_id.exists' => 'The selected expert ID does not exist in the users table.',
             'test_state_id.required' => 'The test state ID is required.',
             'test_state_id.numeric' => 'The test state ID must be a number.',
             'test_state_id.exists' => 'The selected test state ID does not exist in the test_states table.',
