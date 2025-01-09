@@ -44,6 +44,9 @@ class ChatGPTService{
               - Generate the next question or feedback based on these references.
             - Question Types:
               - 1: Input (open-ended).
+            - Generate meaningful, scenario-based questions tailored to user details (age, role, experience).
+            - Highlight common user mistakes and cybersecurity misconceptions.
+            }.
               '
         ];
     }
