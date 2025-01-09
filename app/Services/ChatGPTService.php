@@ -63,7 +63,7 @@ class ChatGPTService{
             - Respond exclusively in JSON format:
               {
                 "type_question": <question_type_id>,
-                "id": <question_id>,
+                "gpt_question_id": <question_id>,
                 "question": "<question_title>",
                 "options": [<option_1>, <option_2>, ...] (if applicable),
                 "user_answer": [<selected_option_1>, <selected_option_2>, ...] (if applicable)
@@ -126,7 +126,7 @@ class ChatGPTService{
 
     protected function is_valid_json_structure(array $data): bool
     {
-        $required_keys = ['type_question', 'id', 'question'];
+        $required_keys = ['type_question', 'gpt_question_id', 'question'];
 
         foreach ($required_keys as $key) {
             if (!array_key_exists($key, $data)) {

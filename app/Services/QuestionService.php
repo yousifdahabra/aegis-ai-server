@@ -34,6 +34,7 @@ class QuestionService{
         $question->title = $data['question'];
         $question->question_provider_id = $data['question_provider_id'] ?? Question::GPT;
         $question->use_question_id = $data['use_question_id'] ?? 0;
+        $question->gpt_question_id = $data['gpt_question_id'] ?? 0;
         $question->save();
 
         if (!empty($data['options']) && is_array($data['options'])) {
@@ -104,4 +105,11 @@ class QuestionService{
         return true;
     }
 
+    public function get_previous_questions(int $test_id): array
+    {
+        $questions = Question::with(['options', 'user_answer'])->where('test_id', $test_id)->get();
+
+        $formatted_questions = [];
+         return $formatted_questions;
+    }
 }
