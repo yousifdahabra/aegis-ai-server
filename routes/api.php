@@ -106,6 +106,10 @@ Route::middleware([ExpertMiddleware::class])->prefix('expert')->group(function (
 });
 
 Route::middleware([JwtMiddleware::class])->group(function () {
+
+    Route::post('/generate-question', [ChatGPTController::class, 'generate_question']);
+    Route::post('/generate-feedback', [ChatGPTController::class, 'generate_feedback']);
+
     Route::prefix('user_expert_requests')->group(function () {
         Route::get('/{id?}', [UserExpertRequestController::class, 'show']);
         Route::post('/', [UserExpertRequestController::class, 'store']);

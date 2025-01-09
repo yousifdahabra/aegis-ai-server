@@ -11,9 +11,13 @@ use App\Services\TestService;
 class TestController extends Controller{
 
     protected $test_service;
+    protected $chatgpt_service;
+    protected $question_service;
 
-    function __construct(TestService $test_service){
+    function __construct(TestService $test_service, ChatGPTService $chatgpt_service, QuestionService $question_service){
         $this->test_service = $test_service;
+        $this->chatgpt_service = $chatgpt_service;
+        $this->question_service = $question_service;
     }
 
     public function show($id = 0){

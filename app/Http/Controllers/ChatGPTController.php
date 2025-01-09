@@ -18,9 +18,10 @@ class ChatGPTController extends Controller{
     public function generate_question(Request $request){
 
         $user = auth()->user();
+        $test_id =  $request->input('test_id');
         $user_data = "{$user->name}, age " . (date('Y') - $user->birth_year) . ", role: " . ($user->is_admin() ? 'Admin' : ($user->is_expert() ? 'Expert' : 'User'));
 
-        $previous_questions = $request->input('previous_questions', []);
+        $previous_questions = $this->questions_service->get_previous_questions($test_id, $user->id);
 
         $response = $this->chatgpt_service->generate_question($user_data, $previous_questions);
 
@@ -32,7 +33,7 @@ class ChatGPTController extends Controller{
         }
 
         $question_data = $response['data'];
-        $question_data['test_id'] = $request->input('test_id');
+        $question_data['test_id'] = $test_id;
         $question_data['previous_question_id'] = $previous_questions ? end($previous_questions)['id'] : null;
 
         $this->questions_service->store_question($question_data);
