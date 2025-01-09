@@ -7,16 +7,19 @@ use OpenAI;
 class ChatGPTService{
 
     protected $client;
+    protected $model;
 
     public function __construct(){
         $this->client = OpenAI::client(config('services.openai.key'));
+        $this->model = config('services.openai.model', 'gpt-3.5-turbo');
     }
 
     public function ask_chatgpt(string $message, array $context = []): array
     {
         try {
             $response = $this->client->chat()->create([
-                'model' => 'gpt-3.5-turbo', //or gpt-4
+                'model' =>  $this->model,
+                'timeout' => 10,
                 'messages' => array_merge(
                     $context,
                     [['role' => 'user', 'content' => $message]]
