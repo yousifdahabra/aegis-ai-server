@@ -16,23 +16,43 @@ class ChatGPTService{
 
     public function ask_chatgpt(string $message, array $context = []): array
     {
-        try {
-            $response = $this->client->chat()->create([
-                'model' =>  $this->model,
-                'timeout' => 10,
-                'messages' => array_merge(
-                    $context,
-                    [['role' => 'user', 'content' => $message]]
-                ),
-            ]);
+        $max_retries = 2;
+        $attempt = 0;
 
-            return [
-                'status' => true,
-                'data' => $response['choices'][0]['message']['content'] ?? ''
-            ];
-        } catch (Exception $e) {
-            return $this->handle_error($e);
+        while ($attempt < $max_retries) {
+            $attempt++;
+
+            try {
+                $response = $this->client->chat()->create([
+                    'model' => $this->model,
+                    'timeout' => 10,
+                    'messages' => array_merge(
+                        $context,
+                        [['role' => 'user', 'content' => $message]]
+                    ),
+                ]);
+
+                $content = $response['choices'][0]['message']['content'] ?? '';
+                $decoded = json_decode($content, true);
+
+                if (json_last_error() !== JSON_ERROR_NONE) {
+                    throw new Exception("Invalid JSON response.");
+                }
+
+                $this->is_valid_json_structure($decoded);
+
+                return [
+                    'status' => true,
+                    'data' => $decoded
+                ];
+            } catch (Exception $e) {
+                if ($attempt >= $max_retries) {
+                    return $this->handle_error($e);
+                }
+            }
         }
+
+        return $this->handle_error("Failed to get valid response after {$max_retries} attempts.");
     }
 
     protected function get_system_message(): array{
