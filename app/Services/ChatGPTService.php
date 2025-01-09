@@ -25,6 +25,14 @@ class ChatGPTService{
         return $response['choices'][0]['message']['content'] ?? '';
     }
 
+    protected function get_system_message(): array{
+        return [
+            'role' => 'system',
+            'content' => 'You are a cybersecurity expert and test engineer. Your role is to create adaptive questions and provide feedback for cybersecurity assessments.'
+        ];
+    }
+
+
     public function generate_question(string $user_data, array $previous_questions = []): string
     {
         $context = [
