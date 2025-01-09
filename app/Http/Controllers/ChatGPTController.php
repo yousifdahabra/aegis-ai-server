@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Services\ChatGPTService;
 
 class ChatGPTController extends Controller{
@@ -12,11 +13,12 @@ class ChatGPTController extends Controller{
         $this->chatgpt_service = $chatgpt_service;
     }
 
-    public function test_chatgpt(): string
-    {
-        $message = "Explain cybersecurity in simple terms.";
-        $response = $this->chatgpt_service->ask_chatgpt($message);
+    public function generate_question(Request $request){
 
-        return response()->json(['message' => $response]);
+        $user_data = $request->input('user_data', '');
+        $previous_questions = $request->input('previous_questions', []);
+
     }
+
+
 }
