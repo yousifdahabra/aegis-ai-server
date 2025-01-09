@@ -109,6 +109,27 @@ class UserAnswerController extends Controller{
             ], 422);
         }
 
+        $previous_questions_with_answers = $this->questions_service->get_previous_questions($test_id, $user->id);
+        $user_data = "{$user->name}, age " . (date('Y') - $user->birth_year)  ;
+
+        if (count($previous_questions_with_answers) >= 3) {
+
+            $feedback_response = $this->chatgpt_service->generate_feedback($user_data, $previous_questions_with_answers);
+
+            if (!$feedback_response['status']) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Failed to generate feedback',
+                ], 422);
+            }
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Test is complete',
+                'data' => $feedback_response['data'],
+            ], 200);
+        }
+
     }
 
 }
