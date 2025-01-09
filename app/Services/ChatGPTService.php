@@ -103,6 +103,20 @@ class ChatGPTService{
             return $this->handle_error($e);
         }
     }
+
+    protected function is_valid_json_structure(array $data): bool
+    {
+        $required_keys = ['type_question', 'id', 'question'];
+
+        foreach ($required_keys as $key) {
+            if (!array_key_exists($key, $data)) {
+                throw new Exception("Missing required key: {$key}");
+            }
+        }
+
+        return true;
+    }
+
     protected function handle_error($error): array
     {
         $message = 'An unexpected error occurred.';
