@@ -44,7 +44,11 @@ class QuestionService{
                     'title' => $option_title,
                     'question_id' => $question->id,
                 ]);
-                $options[] = $option;
+                $options[] = [
+                    'title' => $option->title,
+                    'question_id' => $option->question_id,
+                    'id' => $option->id,
+                ];
             }
         }
 
