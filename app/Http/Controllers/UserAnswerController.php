@@ -103,14 +103,14 @@ class UserAnswerController extends Controller{
         $test_id = $question_info['test_id'];//get_questions
 
 
-        // $user_answer = $this->user_answers_service->store($data);
+         $user_answer = $this->user_answers_service->store($data);
 
-        // if (!$user_answer) {
-        //     return response()->json([
-        //         'status' => false,
-        //         'message' => 'User Answer creation failed',
-        //     ], 422);
-        // }
+         if (!$user_answer) {
+            return response()->json([
+                 'status' => false,
+                 'message' => 'User Answer creation failed',
+             ], 422);
+         }
 
         $previous_questions = $this->questions_service->get_previous_questions($test_id, $user->id);
         $previous_questions_with_answers = array_map(function ($item) {
@@ -132,6 +132,7 @@ class UserAnswerController extends Controller{
 
             return response()->json([
                 'status' => true,
+                'finish' => true,
                 'message' => 'Test is complete',
                 'data' => $feedback_response['data'],
             ], 200);
@@ -153,6 +154,7 @@ class UserAnswerController extends Controller{
 
         return response()->json([
             'status' => true,
+            'finish' => false,
             'message' => 'User Answer saved and next question generated',
             'data' => $response['data'],
         ], 201);
