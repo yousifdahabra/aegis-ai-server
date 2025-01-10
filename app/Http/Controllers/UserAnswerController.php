@@ -121,7 +121,7 @@ class UserAnswerController extends Controller{
         $previous_questions_with_answers;
         if (count($previous_questions_with_answers) >= 3) {
 
-            return $feedback_response = $this->chatgpt_service->generate_feedback($user_data, $previous_questions_with_answers);
+             $feedback_response = $this->chatgpt_service->generate_feedback($user_data, $previous_questions_with_answers);
 
             if (!$feedback_response['status']) {
                 return response()->json([
