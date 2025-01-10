@@ -36,11 +36,11 @@ class ChatGPTController extends Controller{
         $question_data['test_id'] = $test_id;
         $question_data['previous_question_id'] = $previous_questions ? end($previous_questions)['id'] : null;
 
-        $this->questions_service->store_question($question_data);
+        $question = $this->questions_service->store_question($question_data);
 
         return response()->json([
             'status' => true,
-            'data' => $response['data'],
+            'data' => $question   ,
             'message' => 'Question generated successfully.',
         ], 201);
     }
