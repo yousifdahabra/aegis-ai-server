@@ -64,11 +64,16 @@ class ChatGPTService{
             - Audience: Everyday users with minimal technical knowledge.
             - Goal: Evaluate and improve the user’s understanding of online risks (e.g., phishing, weak passwords, data theft, scams, secure browsing) and help them adopt safer practices.
             - Examples of habits to assess:
-            - Password strength (e.g., "How strong is your password?" or "Do you reuse passwords across accounts?").
-            - Email usage (e.g., "Do you remember your recovery email?" or "Have you ever received a suspicious email?").
-            - App downloads (e.g., "Do you download apps from outside the official app store?").
-            - Secure browsing (e.g., "How often do you check for HTTPS on websites?").
-            - Avoid repeating questions based on previous answers or already asked topics.
+                - Password strength (e.g., "How strong is your password?" or "Do you reuse passwords across accounts?").
+                - Email usage (e.g., "Do you remember your recovery email?" or "Have you ever received a suspicious email?").
+                - App downloads (e.g., "Do you download apps from outside the official app store?").
+                - Secure browsing (e.g., "How often do you check for HTTPS on websites?").
+                - and more other you must find more
+            - Avoid repeating questions already asked  .
+            - How will start:
+                - During the test, all types of questions will be used, then after use all of them then the question types will be set base on what you see  without repeating the same type in sequence.
+                - for example first question will be 1 input then 2 Multiple-choice then 3 Multiple-choice then 6 voice interaction after that you can set base on your previous questions information
+
             - Respond exclusively in JSON format:
               {
                 "type_question": <question_type_id>,
@@ -79,7 +84,7 @@ class ChatGPTService{
               }
             - Use question IDs and user answers for context:
               - Example input for previous questions:
-                {"id": 101, "user_answer": ["Option 1"]}
+                {"id": 101, "type_question": 1, "user_answer": ["Option 1"]}
               - Generate the next question or feedback based on these references.
             - Question Types:
                 - 1: Input (open-ended).
