@@ -122,8 +122,7 @@ class UserAnswerController extends Controller{
 
         $user_data = "{$user->name}, age " . (date('Y') - $user->birth_year)  ;
         $previous_questions_with_answers;
-        if (count($previous_questions_with_answers) >= 3) {
-
+        if (count($previous_questions_with_answers) >= 4) {
             $feedback_response = $this->chatgpt_service->generate_feedback($user_data, $previous_questions_with_answers);
 
             if (!$feedback_response['status']) {
@@ -140,6 +139,8 @@ class UserAnswerController extends Controller{
                     'data' => $feedback,
                 ], 200);
             }
+
+            $this->test_service->update_grade($feedback_response['data']['result']['score'],$test_id);
 
             return response()->json([
                 'status' => true,

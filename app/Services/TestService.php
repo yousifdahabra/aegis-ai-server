@@ -63,6 +63,7 @@ class TestService{
             return false;
         }
         $test->security_grade = $grade;
+        $test->test_state_id = 3;
         $test->save();
         return $test;
     }
