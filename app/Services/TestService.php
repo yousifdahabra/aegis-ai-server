@@ -16,8 +16,16 @@ class TestService{
         return Test::all();
     }
 
-    public function get_tests_list(){
-        return Test::with(['user', 'test_state', 'questions'])->get();
+    public function get_tests_list($user){
+
+        if ($user->user_role_id === 3) {
+            return Test::with(['user', 'test_state', 'questions'])
+                ->where('user_id', $user->id)
+                ->orderBy('id', 'desc')
+                ->get();
+        }
+
+        return Test::with(['user', 'test_state', 'questions'])->orderBy('id', 'desc')->get();
     }
 
     public function store(array $data): Test
