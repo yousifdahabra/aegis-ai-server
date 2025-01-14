@@ -123,6 +123,7 @@ class QuestionService{
         foreach ($questions as $question) {
             $entry = [
                 'id' => $question->id,
+                'type_question' => $question->question_type_id,
                 'user_answer' => $question->user_answer?->option_answer ?? [],
             ];
 
