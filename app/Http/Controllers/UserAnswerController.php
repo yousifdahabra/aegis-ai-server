@@ -8,6 +8,7 @@ use App\Http\Resources\UserAnswerResource;
 use App\Services\ChatGPTService;
 use App\Services\UserAnswersService;
 use App\Services\QuestionService;
+use App\Services\TestService;
 use Illuminate\Http\Request;
 
 class UserAnswerController extends Controller{
@@ -15,11 +16,13 @@ class UserAnswerController extends Controller{
     protected $user_answers_service;
     protected $questions_service;
     protected $chatgpt_service;
+    protected $test_service;
 
-    function __construct(UserAnswersService $user_answers_service, QuestionService $questions_service, ChatGPTService $chatgpt_service){
+    function __construct(UserAnswersService $user_answers_service, QuestionService $questions_service, ChatGPTService $chatgpt_service,TestService $test_service){
         $this->user_answers_service = $user_answers_service;
         $this->questions_service = $questions_service;
         $this->chatgpt_service = $chatgpt_service;
+        $this->test_service = $test_service;
     }
 
     public function show($id = 0){
@@ -121,7 +124,7 @@ class UserAnswerController extends Controller{
         $previous_questions_with_answers;
         if (count($previous_questions_with_answers) >= 3) {
 
-             $feedback_response = $this->chatgpt_service->generate_feedback($user_data, $previous_questions_with_answers);
+            $feedback_response = $this->chatgpt_service->generate_feedback($user_data, $previous_questions_with_answers);
 
             if (!$feedback_response['status']) {
                 $feedback = [
