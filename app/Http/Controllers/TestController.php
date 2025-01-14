@@ -39,7 +39,9 @@ class TestController extends Controller{
         ], 200);
     }
     public function get_tests_list(){
-        $tests = $this->test_service->get_tests_list();
+        $user = auth()->user();
+
+        $tests = $this->test_service->get_tests_list($user);
 
         if(!$tests){
             return response()->json([
