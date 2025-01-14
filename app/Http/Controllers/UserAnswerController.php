@@ -124,10 +124,18 @@ class UserAnswerController extends Controller{
              $feedback_response = $this->chatgpt_service->generate_feedback($user_data, $previous_questions_with_answers);
 
             if (!$feedback_response['status']) {
+                $feedback = [
+                    "result" => [
+                        "analysis" => "You will receive an answer as soon as possible in your email, Thanks",
+                        "score" => "^-^"
+                    ]
+                ];
                 return response()->json([
-                    'status' => false,
-                    'message' => 'Failed to generate feedback',
-                ], 422);
+                    'status' => true,
+                    'finish' => true,
+                    'message' => 'Test is complete',
+                    'data' => $feedback,
+                ], 200);
             }
 
             return response()->json([
