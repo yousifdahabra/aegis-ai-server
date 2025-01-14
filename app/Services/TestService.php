@@ -57,5 +57,14 @@ class TestService{
         $test->delete();
         return true;
     }
+    public function update_grade( $grade,$id){
+        $test = Test::find($id);
+        if(!$test){
+            return false;
+        }
+        $test->security_grade = $grade;
+        $test->save();
+        return $test;
+    }
 
 }
