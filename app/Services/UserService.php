@@ -50,12 +50,12 @@ class UserService{
         }
         return User::all()->where('user_role_id',$role);
     }
-    public function block_user($data,$id){
+    public function block_user($id){
         $user = User::find($id);
         if(!$user){
             return false;
         }
-        $user->blocked = $data['blocked'];
+        $user->blocked = !$user->blocked;
         $user->save();
         return $user;
     }

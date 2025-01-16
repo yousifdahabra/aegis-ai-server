@@ -164,4 +164,27 @@ class UserController extends Controller{
         }
 
     }
+
+    public function block($id){
+        if (empty($id) || !is_numeric($id)) {
+            return response()->json([
+                'status' => false,
+                "message" => 'User Error',
+            ], 422);
+        }
+        $user = $this->user_service->block_user($id);
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User not found',
+            ], 422);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User blocked successfully',
+            'data' => $user
+        ], 200);
+    }
+
 }
