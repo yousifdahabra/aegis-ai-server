@@ -13,7 +13,7 @@ class UserService{
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->phone_number = $data['phone_number'] ?? 0;
-        $user->birth_year = date('Y') - $data['birth_year'];;
+        $user->birth_year = date('Y') - $data['birth_year'];
         $user->password = Hash::make($data['password']);
         $user->save();
         return $user;
@@ -27,7 +27,8 @@ class UserService{
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->phone_number = $data['phone_number'];
-        $user->password = Hash::make($data['password']);
+        if(isset($data['password']))
+            $user->password = Hash::make($data['password']);
         $user->save();
         return $user;
     }
