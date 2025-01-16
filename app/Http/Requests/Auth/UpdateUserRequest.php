@@ -28,7 +28,7 @@ class UpdateUserRequest extends BaseRequest{
             'phone_number.max' => 'The phone_number field has a maximum 255 character limit.',
             'email.required' => 'The email field is required.',
             'email.email' => 'Please provide a valid email address.',
-            'password.min' => 'Password must be at least 8 characters long.',
+            'password.min' => 'Password must be at least 6 characters long.',
         ];
     }
 

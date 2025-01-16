@@ -26,6 +26,7 @@ class UserService{
         }
         $user->name = $data['name'];
         $user->email = $data['email'];
+        if(isset($data['phone_number']))
         $user->phone_number = $data['phone_number'];
         if(isset($data['password']))
             $user->password = Hash::make($data['password']);
