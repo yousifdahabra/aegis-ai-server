@@ -67,5 +67,13 @@ class TestService{
         $test->save();
         return $test;
     }
+    public function get_user_tests_list($user_id){
+
+        return Test::with(['user', 'test_state', 'questions'])
+            ->where('user_id', $user_id)
+            ->orderBy('id', 'desc')
+            ->get();
+
+    }
 
 }
