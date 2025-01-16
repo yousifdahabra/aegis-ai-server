@@ -14,12 +14,11 @@ use App\Http\Middleware\JwtMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ExpertMiddleware;
 
-Route::get('/test-chatgpt', [ChatGPTController::class, 'test_chatgpt']);
-
-
 Route::post("/expert_register", [ExpertController::class, "register"]);
 Route::post("/register", [UserController::class, "register"]);
 Route::post("/login", [UserController::class, "login"]);
+Route::post("admin/login", [UserController::class, "login"]);
+Route::post("expert/login", [UserController::class, "login"]);
 Route::post("/check-token-expiry", [UserController::class, "check_token_expiry"]);
 
 Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () {
