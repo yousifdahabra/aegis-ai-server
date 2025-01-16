@@ -26,6 +26,7 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () 
         Route::get('/{id?}', [UserController::class, 'show']);
         Route::put('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'destroy']);
+        Route::delete('/block/{id}', [UserController::class, 'block']);
     });
 
     Route::prefix('experts')->group(function () {
