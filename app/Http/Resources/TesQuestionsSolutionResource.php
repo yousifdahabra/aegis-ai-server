@@ -14,6 +14,6 @@ class TesQuestionsSolutionResource extends JsonResource{
             'title' => $this->title,
             'option_answer' => $this->user_answer->option_answer,
         ];
-        }
+    }
 
 }
