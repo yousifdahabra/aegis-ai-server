@@ -189,6 +189,15 @@ class TestController extends Controller{
                 "question"=>TesQuestionsSolutionResource::collection($tests_solutions)],
         ], 200);
     }
+    function store_full_test(AddQuestionRequest $request){
+        $data =  $request->validated();
+        $test = $this->test_service->store_full_test($data);
+        return response()->json([
+            'status' => true,
+            "data" => $test,
+            "message" => 'Test created successfully',
+        ], 201);
+    }
 
 
 }
