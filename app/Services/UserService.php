@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Models\ExpertRequest;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -60,6 +61,9 @@ class UserService{
         return $user;
     }
 
+    public function get_expert_request(){
+        return ExpertRequest::with(['expert_request_documents', 'user:id,name,email'])->get();
+    }
 
 
 }
