@@ -80,5 +80,21 @@ class ExpertController extends Controller{
         ], 200);
 
     }
+    public function get_expert_request(){
+        $user = $this->user_service->get_expert_request();
+
+        if(!$user){
+            return response()->json([
+                'status' => false,
+                'message' => 'Expert error',
+            ], 422);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Get Expert successfully',
+            'data' => $user
+        ], 200);
+    }
 
 }
