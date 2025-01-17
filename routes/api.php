@@ -36,6 +36,7 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () 
 
     Route::prefix('tests')->group(function () {
         Route::get('/get-test-solutions/{id}', [TestController::class, 'get_list_solutions']);
+        Route::post('/store-full-test', [TestController::class, 'store_full_test']);
 
         Route::get('/get-list', [TestController::class, 'get_tests_list']);
         Route::get('/get-user-list/{id}', [TestController::class, 'get_user_tests_list']);
@@ -74,6 +75,7 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () 
 
 Route::middleware([ExpertMiddleware::class])->prefix('expert')->group(function () {
     Route::prefix('tests')->group(function () {
+        Route::post('/store-full-test', [TestController::class, 'store_full_test']);
         Route::get('/get-test-solutions/{id}', [TestController::class, 'get_list_solutions']);
         Route::get('/get-user-list/{id}', [TestController::class, 'get_user_tests_list']);
         Route::get('/get-list', [TestController::class, 'get_tests_list']);
