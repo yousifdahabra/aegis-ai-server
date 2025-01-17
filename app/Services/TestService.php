@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Test;
+use App\Models\Question;
 
 class TestService{
 
@@ -73,6 +74,13 @@ class TestService{
             ->where('user_id', $user_id)
             ->orderBy('id', 'desc')
             ->get();
+
+    }
+    public function get_list_solutions($test_id){
+
+        return Question::with('user_answer')
+        ->where('test_id', $test_id)
+        ->get();
 
     }
 
