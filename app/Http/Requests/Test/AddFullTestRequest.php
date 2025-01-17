@@ -28,6 +28,16 @@ class AddFullTestRequest extends BaseRequest{
     public function messages(): array
     {
         return [
+            'title.required' => 'The test title is required.',
+            'user_id.required' => 'The user ID is required.',
+            'user_id.exists' => 'The selected user ID does not exist.',
+            'expert_id.required' => 'The expert ID is required.',
+            'expert_id.exists' => 'The selected expert ID does not exist.',
+            'questions.required' => 'At least one question is required.',
+            'questions.*.type_question.required' => 'The question type is required.',
+            'questions.*.type_question.exists' => 'The selected question type is invalid.',
+            'questions.*.question.required' => 'The question title is required.',
+            'questions.*.options.*.title.required_with' => 'Each option must have a title.',
         ];
     }
 }
