@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Test\AddFullTestRequest;
 use App\Http\Requests\Test\AddTestRequest;
 use App\Http\Requests\Test\UpdateTestRequest;
 use App\Http\Resources\TesQuestionsSolutionResource;
@@ -189,7 +190,7 @@ class TestController extends Controller{
                 "question"=>TesQuestionsSolutionResource::collection($tests_solutions)],
         ], 200);
     }
-    function store_full_test(AddQuestionRequest $request){
+    function store_full_test(AddFullTestRequest $request){
         $data =  $request->validated();
         $test = $this->test_service->store_full_test($data);
         return response()->json([
