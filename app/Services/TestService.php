@@ -83,5 +83,9 @@ class TestService{
         ->get();
 
     }
+    public function get_test_by_id($test_id){
+        return Test::with(['test_state', 'questions.user_answer'])
+            ->find($test_id);
+    }
 
 }
