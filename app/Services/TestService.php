@@ -6,6 +6,12 @@ use App\Models\Question;
 
 class TestService{
 
+    protected $question_service;
+
+    public function __construct(QuestionService $question_service){
+        $this->question_service = $question_service;
+    }
+
     public function get_tests($id = 0){
         if($id > 0){
             $test = Test::find($id);
@@ -86,6 +92,22 @@ class TestService{
     public function get_test_by_id($test_id){
         return Test::with(['test_state', 'questions.user_answer'])
             ->find($test_id);
+    }
+
+    public function store_full_test(array $data): Test
+    {
+        $test = new Test;
+        $test->title = $data['title'];
+        $test->user_id = $data['user_id'];
+        $test->expert_id = $data['expert_id'];
+        $test->test_state_id = 1;
+        $test->save();
+        $test_id = $test->id;
+        foreach ($data['questions'] as $question) {
+            $question['test_id'] = $test_id;
+            $this->question_service->store($question);
+        }
+        return $test;
     }
 
 }
