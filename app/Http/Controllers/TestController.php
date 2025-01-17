@@ -140,6 +140,12 @@ class TestController extends Controller{
     }
 
     public function get_user_tests_list($user_id){
+        if(empty($user_id) || !is_numeric($user_id)){
+            return response()->json([
+                'status' => false,
+                "message" => 'Test Error',
+            ], 422);
+        }
 
         $tests = $this->test_service->get_user_tests_list($user_id);
 
