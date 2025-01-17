@@ -25,7 +25,14 @@ class FileController extends Controller{
     public function download($userId, $fileName){
         $filePath = "expert_certificates/{$userId}/{$fileName}";
 
-         return response()->download(Storage::disk('private')->path($filePath));
+        if (!Storage::disk('private')->exists($filePath)) {
+            return response()->json([
+                'status' => false,
+                'message' => 'File not found',
+            ], 404);
+        }
+
+        return response()->download(Storage::disk('private')->path($filePath));
     }
 
 }
