@@ -171,9 +171,10 @@ class TestController extends Controller{
             ], 422);
         }
 
-        $tests = $this->test_service->get_list_solutions($test_id);
+        $tests_solutions = $this->test_service->get_list_solutions($test_id);
+        $test = $this->test_service->get_test_by_id($test_id);
 
-        if(!$tests){
+        if(!$tests_solutions){
             return response()->json([
                 'status' => false,
                 'message' => 'Test error',
@@ -183,7 +184,9 @@ class TestController extends Controller{
         return response()->json([
             'status' => true,
             'message' => 'Get Tests successfully',
-            'data' => TesQuestionsSolutionResource::collection($tests),
+            'data' => [
+                "test"=>new TestListResource($test),
+                "question"=>TesQuestionsSolutionResource::collection($tests_solutions)],
         ], 200);
     }
 
