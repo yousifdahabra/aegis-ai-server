@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExpertController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TestController;
@@ -22,6 +23,14 @@ Route::post("expert/login", [UserController::class, "login"]);
 Route::post("/check-token-expiry", [UserController::class, "check_token_expiry"]);
 
 Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () {
+    Route::get('/expert_certificates/{userId}/{fileName}', [FileController::class, 'show'])
+    ->where('fileName', '.*')
+    ->name('api.file.show');
+
+    Route::get('/expert_certificates/{userId}/{fileName}/download', [FileController::class, 'download'])
+        ->where('fileName', '.*')
+        ->name('api.file.download');
+
     Route::prefix('users')->group(function () {
         Route::get('/{id?}', [UserController::class, 'show']);
         Route::put('/{id}', [UserController::class, 'update']);
