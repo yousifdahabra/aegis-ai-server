@@ -139,5 +139,22 @@ class TestController extends Controller{
 
     }
 
+    public function get_user_tests_list($user_id){
+
+        $tests = $this->test_service->get_user_tests_list($user_id);
+
+        if(!$tests){
+            return response()->json([
+                'status' => false,
+                'message' => 'Test error',
+            ], 422);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Get Tests successfully',
+            'data' => TestListResource::collection($tests),
+        ], 200);
+    }
 
 }
