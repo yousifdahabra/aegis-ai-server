@@ -30,6 +30,7 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () 
     });
 
     Route::prefix('experts')->group(function () {
+        Route::get('/get-expert-request', [ExpertController::class, 'get_expert_request']);
         Route::get('/{id?}', [ExpertController::class, 'show']);
         Route::delete('/{id}', [ExpertController::class, 'destroy']);
     });
