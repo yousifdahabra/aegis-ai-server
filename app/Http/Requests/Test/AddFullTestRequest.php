@@ -21,7 +21,6 @@ class AddFullTestRequest extends BaseRequest{
             'questions.*.type_question' => 'required|numeric|exists:question_types,id',
             'questions.*.question' => 'required|string|max:1000',
             'questions.*.options' => 'nullable|array',
-            'questions.*.options.*.title' => 'required_with:questions.*.options|string|max:255',
         ];
     }
 
@@ -37,7 +36,6 @@ class AddFullTestRequest extends BaseRequest{
             'questions.*.type_question.required' => 'The question type is required.',
             'questions.*.type_question.exists' => 'The selected question type is invalid.',
             'questions.*.question.required' => 'The question title is required.',
-            'questions.*.options.*.title.required_with' => 'Each option must have a title.',
         ];
     }
 }
