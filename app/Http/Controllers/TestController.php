@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Test\AddTestRequest;
 use App\Http\Requests\Test\UpdateTestRequest;
+use App\Http\Resources\TesQuestionsSolutionResource;
 use App\Http\Resources\TestListResource;
 use App\Http\Resources\TestResource;
 use App\Services\ChatGPTService;
@@ -162,5 +163,29 @@ class TestController extends Controller{
             'data' => TestListResource::collection($tests),
         ], 200);
     }
+    public function get_list_solutions($test_id){
+        if(empty($test_id) || !is_numeric($test_id)){
+            return response()->json([
+                'status' => false,
+                "message" => 'Test Error',
+            ], 422);
+        }
+
+        $tests = $this->test_service->get_list_solutions($test_id);
+
+        if(!$tests){
+            return response()->json([
+                'status' => false,
+                'message' => 'Test error',
+            ], 422);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Get Tests successfully',
+            'data' => TesQuestionsSolutionResource::collection($tests),
+        ], 200);
+    }
+
 
 }
