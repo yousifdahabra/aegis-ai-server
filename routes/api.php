@@ -41,7 +41,7 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () 
     Route::prefix('experts')->group(function () {
         Route::get('/get-expert-request', [ExpertController::class, 'get_expert_request']);
         Route::get('/reject-request/{id}', [ExpertController::class, 'reject_request']);
-        Route::get('/accept-request/{id}', [ExpertController::class, 'reject_request']);
+        Route::get('/accept-request/{id}', [ExpertController::class, 'accept_request']);
         Route::get('/{id?}', [ExpertController::class, 'show']);
         Route::delete('/{id}', [ExpertController::class, 'destroy']);
     });

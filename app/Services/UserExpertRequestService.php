@@ -13,7 +13,7 @@ class UserExpertRequestService{
             }
             return $user_expert_request;
         }
-        return UserExpertRequest::all();
+        return UserExpertRequest::where('state', 0)->get();
     }
 
     public function store(array $data): UserExpertRequest
