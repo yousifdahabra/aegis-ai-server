@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\ExpertRequestDocument;
 use App\Models\ExpertRequest;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class ExpertService{
@@ -44,4 +45,18 @@ class ExpertService{
         return true;
     }
 
+    public function accept_request($id){
+        $request = ExpertRequest::find($id);
+        if(!$request){
+            return false;
+        }
+        $user = User::find($request->user_id);
+        $user->blocked = 0;
+        $user->save();
+
+        $request->state = 1;
+        $request->save();
+
+        return $request;
+    }
 }

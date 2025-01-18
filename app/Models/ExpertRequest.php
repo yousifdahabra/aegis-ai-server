@@ -11,6 +11,7 @@ class ExpertRequest extends Model{
         'user_id',
         'extra_informations',
         'links',
+        'state',
     ];
 
     public function user(): BelongsTo
