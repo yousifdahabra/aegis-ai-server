@@ -94,5 +94,22 @@ class ExpertController extends Controller{
             'data' => $user
         ], 200);
     }
+    public function accept_request($id){
+        $expert = $this->expert_service->accept_request($id);
+
+        if(!$expert){
+            return response()->json([
+                'status' => false,
+                'message' => 'Expert error',
+            ], 422);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Update Expert successfully',
+            'data' => $expert
+        ], 200);
+    }
+
 
 }
