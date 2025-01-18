@@ -50,7 +50,7 @@ class ExpertService{
         if(!$request){
             return false;
         }
-        $user = User::find($request->user_id);
+        $user = User::find($request['user_id']);
         $user->blocked = 0;
         $user->save();
 
@@ -65,7 +65,8 @@ class ExpertService{
         if(!$request){
             return false;
         }
-        $user = User::find($request->user_id);
+
+        $user = User::find($request['user_id']);
         $user->blocked = 0;
         $user->user_role_id = 3;
         $user->save();
