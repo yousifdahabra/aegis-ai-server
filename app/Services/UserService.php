@@ -63,7 +63,9 @@ class UserService{
     }
 
     public function get_expert_request(){
-        return ExpertRequest::with(['expert_request_documents', 'user:id,name,email'])->get();
+        return ExpertRequest::with(['expert_request_documents', 'user:id,name,email'])
+        ->where('state', 0)
+        ->get();
     }
 
 
