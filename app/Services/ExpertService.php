@@ -59,4 +59,22 @@ class ExpertService{
 
         return $request;
     }
+
+    public function reject_request($id){
+        $request = ExpertRequest::find($id);
+        if(!$request){
+            return false;
+        }
+        $user = User::find($request->user_id);
+        $user->blocked = 0;
+        $user->user_role_id = 3;
+        $user->save();
+
+        $request->state = 2;
+        $request->save();
+
+        return $request;
+    }
+
+
 }
