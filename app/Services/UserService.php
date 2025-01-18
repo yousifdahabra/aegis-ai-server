@@ -11,6 +11,7 @@ class UserService{
     {
         $user = new User;
         $user->user_role_id = $role;
+        $user->blocked = $role == 2 ;
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->phone_number = $data['phone_number'] ?? 0;

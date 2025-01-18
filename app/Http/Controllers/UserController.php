@@ -44,6 +44,20 @@ class UserController extends Controller{
 
             $user = auth()->user();
 
+            if($user->blocked){
+                if ($user->role == 3)
+                    return response()->json([
+                        'status' => false,
+                        "message" => 'You are not authrize to login',
+                    ], 401);
+                else if ($user->role == 2) {
+                    return response()->json([
+                        'status' => false,
+                        "message" => 'Wait for application ',
+                    ], 401);
+                }
+            }
+
             return response()->json([
                 'status' => true,
                 "user" => $user,
