@@ -13,6 +13,7 @@ class UserExpertRequest extends Model{
         'about_user',
         'user_note',
         'links',
+        'state',
     ];
 
     public function user(): BelongsTo
