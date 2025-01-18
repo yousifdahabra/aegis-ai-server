@@ -50,7 +50,7 @@ class UserService{
         if($id > 0){
             return User::find($id);
         }
-        return User::all()->where('user_role_id',$role);
+        return User::all();
     }
     public function block_user($id){
         $user = User::find($id);
