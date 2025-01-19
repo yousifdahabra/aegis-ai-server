@@ -12,6 +12,7 @@ class TestListResource extends JsonResource{
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'expert_id' => $this->expert_id,
             'security' => $this->security_grade,
             'user_name' => $this->user->name,
             'test_state' => $this->test_state->title,
