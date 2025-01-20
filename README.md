@@ -1,66 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<img src="./readme/title1.svg"/>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<br><br>
 
-## About Laravel
+<!-- project philosophy -->
+<img src="./readme/title2.svg"/>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+>  AegisAI embodies a user-focused approach, combining advanced backend architecture with Laravel's robust capabilities to ensure secure, scalable, and efficient operations. From implementing clean code principles like SRP to delivering a seamless API for communication, the project integrates modern web technologies to create an intuitive, interactive platform for online safety.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<br>
+<!-- Implemented Laravel Features -->
+<img src="./readme/title3.svg"/>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+>These features together make the backend robust, secure, and efficient
 
-## Learning Laravel
+## Implemented Laravel Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### **1. Single Responsibility Principle (SRP)**
+Laravel's clean architecture promotes SRP by dividing the application into controllers, models, and services. This ensures maintainability and scalability, making the project easy to debug and extend as new features are added.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### **2. API Resource Transformations**
+Used API resources to transform data consistently before sending responses. This ensures a standardized API output, improving integration with the frontend and mobile applications.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### **3. Middleware for Authentication and Authorization**
+Implemented middleware to manage access control and secure API endpoints. This ensures only authorized users and experts can access sensitive data, reinforcing security and trust.
 
-## Laravel Sponsors
+### **4. Form Requests for Validation**
+Centralized validation logic using Laravel's form requests. This promotes reusability and keeps controllers clean, ensuring robust input validation for secure and reliable operations.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+### **5. Dependency Injection with Service Containers**
+Utilized Laravel's service container to implement dependency injection. This allows for clean management of services and dependencies, such as CRUD operations in service classes.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### **6. Database Migrations and Seeding**
+Managed schema evolution through migrations and seeded the database with test data. This allows smooth development and deployment processes while maintaining data integrity.
 
-## Contributing
+### **7. Eloquent Relationships**
+Leveraged Laravel's Eloquent ORM to define relationships between models, enabling efficient querying and minimizing database overhead. This simplifies handling complex data structures, such as user-expert interactions and test details.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### **8. Error and Exception Handling**
+Implemented comprehensive error handling, returning user-friendly messages for invalid requests while logging details for debugging. This approach enhances the user experience and simplifies issue resolution.
 
-## Code of Conduct
+<br><br>
+<!-- UI UX -->
+<img src="./readme/title4.svg"/>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+> Below is the streamlined folder structure for **AegisAI Server (Laravel)**. Key directories are expanded, while lesser-used subfolders are mentioned without detailing their contents.
+```plaintext
+.
+├── .env.example               # Example environment configuration
+├── composer.json              # Composer dependencies│
+├── app                        # Core application logic
+│   ├── Http                   # Handles HTTP requests and responses
+│   │   ├── Controllers        # Manages application logic
+│   │   ├── Middleware         # Request filtering and processing
+│   │   ├── Requests           # Input validation rules
+│   │   └── Resources          # API response formatting
+│   ├── Models                 # Eloquent ORM data models
+│   ├── Providers              # Registers services and bindings
+│   └── Services               # Encapsulates business logic
+│
+├── bootstrap                  # Laravel bootstrapping files
+│   └── cache                  # Cache configurations
+│
+├── config                     # Configuration files
+│   ├── auth.php               # Authentication setup
+│   ├── database.php           # Database connection details
+│   └── services.php           # External service integrations
+│
+├── database                   # Database migrations and seeders
+│   ├── migrations             # Defines database schema
+│   ├── seeders                # Populates test and default data
+│   └── factories              # Generates model test data
+│
+├── routes                     # Route definitions
+│   ├── api.php                # API routes
+│
+├── storage                    # Local file storage
+│   ├── app                    # Application-specific files
+│   ├── framework              # Framework-specific storage
+│   └── logs                   # Application logs
+└── vendor                     # Composer-managed dependencies
+```
+This structure showcases a clean and organized Laravel project, designed for scalability, maintainability, and ease of collaboration.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+ 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<br><br>
+
+<!-- Database Design -->
+<img src="./readme/title5.svg"/>
+
+###  Leveraging [MySQL Workbench](https://www.mysql.com/products/workbench/), I crafted and implemented a robust, expertly designed database architecture to power seamless functionality.
+| Database Diagram |
+| --- |
+| <img src="./readme/database/AegisAI.png" alt="Database Diagram" width="600px"> |
+
+
+<br><br>
+ 
+
+
+<!-- Prompt Engineering -->
+<img src="./readme/title7.svg"/>
+
+###  Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
+
+- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
+
+<br><br>
+
+<!-- AWS Deployment -->
+<!-- <img src="./readme/title8.svg"/>
+
+###  Efficient AI Deployment: Unleashing the Potential with AWS Integration:
+
+- This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
+
+<br><br> -->
+
+<!-- Unit Testing -->
+<!-- <img src="./readme/title9.svg"/>
+
+###  Dynamic Security Design: Leveraging Prompt Engineering for Smarter Assessments:
+
+- This project employs advanced prompt engineering to design a structured, dynamic system for cybersecurity assessments. By leveraging a JSON-based framework, it ensures seamless integration and adaptability, tailoring questions to user behaviors and responses. The design emphasizes diverse question formats, interactive voice features, and adaptive sequencing to maintain engagement and relevance. With a focus on simplicity and effectiveness, the project provides actionable insights and inspiration for addressing online safety challenges, fostering improved habits and understanding of cybersecurity risks.
+
+<br><br> -->
