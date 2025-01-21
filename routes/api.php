@@ -146,6 +146,7 @@ Route::middleware([JwtMiddleware::class])->group(function () {
         Route::post('/', [QuestionController::class, 'store']);
     });
     Route::prefix('tests')->group(function () {
+        Route::get('/get-test-solutions/{id}', [TestController::class, 'get_list_solutions']);
         Route::get('/get-list', [TestController::class, 'get_tests_list']);
         Route::get('/{id?}', [TestController::class, 'show']);
         Route::post('/', [TestController::class, 'store']);
