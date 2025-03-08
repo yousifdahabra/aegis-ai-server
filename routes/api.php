@@ -15,6 +15,11 @@ use App\Http\Middleware\JwtMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ExpertMiddleware;
 
+
+Route::get('/test-error', function () {
+    throw new Exception("Exception error!");
+});
+
 Route::post("/expert_register", [ExpertController::class, "register"]);
 Route::post("/register", [UserController::class, "register"]);
 Route::post("/login", [UserController::class, "login"]);
