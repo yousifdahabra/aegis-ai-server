@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.9",
         "league/commonmark": "2.6",
         "openai-php/client": "^0.10.3",
+        "spatie/laravel-flare": "^1.1",
         "tymon/jwt-auth": "^2.1"
     },
     "require-dev": {

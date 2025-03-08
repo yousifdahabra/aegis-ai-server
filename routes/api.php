@@ -15,6 +15,11 @@ use App\Http\Middleware\JwtMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ExpertMiddleware;
 
+
+Route::get('/test-error', function () {
+    throw new Exception("Exception error!");
+});
+
 Route::post("/expert_register", [ExpertController::class, "register"]);
 Route::post("/register", [UserController::class, "register"]);
 Route::post("/login", [UserController::class, "login"]);
@@ -146,6 +151,7 @@ Route::middleware([JwtMiddleware::class])->group(function () {
         Route::post('/', [QuestionController::class, 'store']);
     });
     Route::prefix('tests')->group(function () {
+        Route::get('/get-test-solutions/{id}', [TestController::class, 'get_list_solutions']);
         Route::get('/get-list', [TestController::class, 'get_tests_list']);
         Route::get('/{id?}', [TestController::class, 'show']);
         Route::post('/', [TestController::class, 'store']);
