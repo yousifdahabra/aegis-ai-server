@@ -11,3 +11,8 @@ jobs:
               run : |
                 node -v
                 npm -v
+    parallel-job-macos:
+        runs-on: macos-laatest
+        steps:
+            - name : View SW Version
+              run: sw_vers
